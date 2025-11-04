@@ -1,7 +1,6 @@
 package dev.jeffjks.morefluideffect.common.registry;
 
 import dev.jeffjks.morefluideffect.MoreFluidEffect;
-import dev.jeffjks.morefluideffect.utils.MoreFluidEffectDamageTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;

@@ -1,7 +1,7 @@
 package dev.jeffjks.morefluideffect.datagen;
 
 import dev.jeffjks.morefluideffect.MoreFluidEffect;
-import dev.jeffjks.morefluideffect.common.registry.DamageTypeRegister;
+import dev.jeffjks.morefluideffect.common.registry.ModDamageTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -29,19 +29,16 @@ public class DataGenerators {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
-        //var datapackProvider = generator.addProvider(event.includeServer(), new ModDatapackProvider(packOutput, lookupProvider));
-
-        //generator.addProvider(event.includeServer(), new ModDamageTypeTagProvider(packOutput, datapackProvider.getRegistryProvider(), existingFileHelper));
-
-
         var builder = new RegistrySetBuilder()
-                .add(Registries.DAMAGE_TYPE, DamageTypeRegister::bootstrap);
+                .add(Registries.DAMAGE_TYPE, ModDamageTypes::bootstrap);
         var builtin = new DatapackBuiltinEntriesProvider(
                 packOutput, lookupProvider, builder, Set.of(MoreFluidEffect.MODID)
         );
         generator.addProvider(event.includeServer(), builtin);
 
-        //generator.addProvider(event.includeServer(), new ModDamageTypeTagProvider(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new ModDamageTypeTagProvider(packOutput, builtin.getRegistryProvider(), existingFileHelper));
+
+        generator.addProvider(event.includeServer(), new ModLanguageProvider(packOutput));
+        generator.addProvider(event.includeClient(), new ModLanguageProvider(packOutput, "ko_kr"));
     }
 }

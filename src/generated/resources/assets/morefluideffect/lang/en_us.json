@@ -1,0 +1,4 @@
+{
+  "death.attack.morefluideffect.acid": "%1$s tried to swim in acid.",
+  "death.attack.morefluideffect.acid.player": "%1$s tried to swim in lava to escape %2$s."
+}

@@ -1,7 +1,7 @@
 package dev.jeffjks.morefluideffect.datagen;
 
 import dev.jeffjks.morefluideffect.MoreFluidEffect;
-import dev.jeffjks.morefluideffect.utils.MoreFluidEffectDamageTypes;
+import dev.jeffjks.morefluideffect.common.registry.ModDamageTypes;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.DamageTypeTagsProvider;
@@ -20,12 +20,12 @@ public class ModDamageTypeTagProvider extends DamageTypeTagsProvider {
     @Override
     protected void addTags(Provider provider) {
         tag(DamageTypeTags.BYPASSES_SHIELD)
-                .add(MoreFluidEffectDamageTypes.ACID);
+                .add(ModDamageTypes.ACID);
 
         tag(DamageTypeTags.NO_KNOCKBACK)
-                .add(MoreFluidEffectDamageTypes.ACID);
+                .add(ModDamageTypes.ACID);
 
         tag(DamageTypeTags.PANIC_ENVIRONMENTAL_CAUSES)
-                .add(MoreFluidEffectDamageTypes.ACID);
+                .add(ModDamageTypes.ACID);
     }
 }

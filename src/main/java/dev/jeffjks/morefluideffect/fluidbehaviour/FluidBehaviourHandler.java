@@ -2,7 +2,6 @@ package dev.jeffjks.morefluideffect.fluidbehaviour;
 
 import dev.jeffjks.morefluideffect.MoreFluidEffect;
 import dev.jeffjks.morefluideffect.common.registry.ModDamageTypes;
-import dev.jeffjks.morefluideffect.utils.MoreFluidEffectDamageTypes;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -20,13 +19,13 @@ import java.util.Set;
 
 @EventBusSubscriber(modid = MoreFluidEffect.MODID)
 public class FluidBehaviourHandler {
-    private static final List<ResourceLocation> TARGET_FLUID_IDS = List.of(
+    private static final List<ResourceLocation> FLUID_ACID_IDS = List.of(
             ResourceLocation.fromNamespaceAndPath("mekanism", "sulfuric_acid"),
             ResourceLocation.fromNamespaceAndPath("mekanism", "hydrogen")
     );
 
     // 캐시: 대상 유체 타입들
-    private static final Set<FluidType> TARGET_TYPES = new HashSet<>();
+    private static final Set<FluidType> FLUID_ACID_TYPES = new HashSet<>();
 
     private FluidBehaviourHandler() {}
 
@@ -36,10 +35,10 @@ public class FluidBehaviourHandler {
     }
 
     private static void rebuildTypes(RegistryAccess.Frozen access) {
-        TARGET_TYPES.clear();
+        FLUID_ACID_TYPES.clear();
         var fluids = access.registryOrThrow(Registries.FLUID);
-        for (var id : TARGET_FLUID_IDS) {
-            fluids.getOptional(id).ifPresent(f -> TARGET_TYPES.add(f.getFluidType()));
+        for (var id : FLUID_ACID_IDS) {
+            fluids.getOptional(id).ifPresent(f -> FLUID_ACID_TYPES.add(f.getFluidType()));
         }
     }
 
@@ -59,11 +58,9 @@ public class FluidBehaviourHandler {
         if (living.tickCount % 10 != 0)
             return;
 
-        boolean inTarget = living.isInFluidType((type, height) -> TARGET_TYPES.contains(type), false);
-        if (inTarget) {
+        boolean isInAcidFluid = living.isInFluidType((type, height) -> FLUID_ACID_TYPES.contains(type), false);
+        if (isInAcidFluid) {
             living.hurt(ModDamageTypes.of(living.level(), ModDamageTypes.ACID), 2f);
-            //living.hurt(MoreFluidEffectDamageTypes.acid(living.level()), 2f);
-            //living.hurt(living.damageSources().drown(), 2.0f);
         }
 /*
         if (isInTaggedFluid(living, FluidEffecterTags.Fluids.ACID)) {
