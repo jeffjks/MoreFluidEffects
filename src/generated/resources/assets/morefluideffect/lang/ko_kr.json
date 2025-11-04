@@ -1,4 +1,6 @@
 {
   "death.attack.morefluideffect.acid": "%1$s이(가) 산성 물질에 빠졌습니다.",
-  "death.attack.morefluideffect.acid.player": "%1$s이(가) %2$s로부터 도망치려다가 산성 물질에 빠졌습니다."
+  "death.attack.morefluideffect.acid.player": "%1$s이(가) %2$s로부터 도망치려다가 산성 물질에 빠졌습니다.",
+  "death.attack.morefluideffect.heat": "%1$s이(가) 고온 물질에 빠졌습니다.",
+  "death.attack.morefluideffect.heat.player": "%1$s이(가) %2$s로부터 도망치려다가 고온 물질에 빠졌습니다."
 }
