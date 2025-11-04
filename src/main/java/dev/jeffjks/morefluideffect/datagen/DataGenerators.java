@@ -37,6 +37,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), builtin);
 
         generator.addProvider(event.includeServer(), new ModDamageTypeTagProvider(packOutput, builtin.getRegistryProvider(), existingFileHelper));
+        generator.addProvider(event.includeServer(), new ModEntityTypeTagProvider(packOutput, builtin.getRegistryProvider(), existingFileHelper));
 
         generator.addProvider(event.includeServer(), new ModLanguageProvider(packOutput));
         generator.addProvider(event.includeClient(), new ModLanguageProvider(packOutput, "ko_kr"));

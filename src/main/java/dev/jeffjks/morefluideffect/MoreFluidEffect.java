@@ -1,5 +1,6 @@
 package dev.jeffjks.morefluideffect;
 
+import dev.jeffjks.morefluideffect.common.event.EventHandler;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -56,6 +57,7 @@ public class MoreFluidEffect {
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
+        NeoForge.EVENT_BUS.register(new EventHandler());
     }
 
     // Add the example block item to the building blocks tab
