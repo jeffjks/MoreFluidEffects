@@ -17,8 +17,10 @@ public class EventHandler {
                 event.setInvulnerable(living.getType().is(ModEntityTypeTags.IMMUNE_TO_ACID));
             }
             if (event.getSource().is(DamageTypes.FREEZE)) {
-                event.setInvulnerable(living.getType().is(ModEntityTypeTags.IMMUNE_TO_CRYOGENIC));
-                living.setTicksFrozen(0);
+                var isImmuneToCryogenic = living.getType().is(ModEntityTypeTags.IMMUNE_TO_CRYOGENIC);
+                event.setInvulnerable(isImmuneToCryogenic);
+                if (isImmuneToCryogenic)
+                    living.setTicksFrozen(0);
             }
         }
     }

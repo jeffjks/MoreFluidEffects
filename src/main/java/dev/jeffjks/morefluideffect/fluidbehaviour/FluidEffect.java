@@ -10,8 +10,9 @@ public abstract class FluidEffect implements IHasTickEffect {
     }
 
     @Override
-    public final void tick(LivingEntity living, int tickCount) {
-        if (tickCount % interval == 0) apply(living);
+    public final void tick(LivingEntity living) {
+        if (living.tickCount % interval == 0)
+            apply(living);
     }
 
     protected abstract void apply(LivingEntity living);

@@ -15,7 +15,7 @@ public class FluidCryogenicEffect extends FluidEffect {
 
     @Override
     protected void apply(LivingEntity living) {
-        living.setTicksFrozen(Math.min(living.getTicksFrozen() + FrozenTick + 2, MaxFrozenTick)); // -2 every tick in vanilla
         living.hurt(living.damageSources().freeze(), 2F);
+        living.setTicksFrozen(Math.min(living.getTicksFrozen() + FrozenTick + 2, MaxFrozenTick)); // -2 every tick in vanilla
     }
 }
