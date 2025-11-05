@@ -1,0 +1,6 @@
+{
+  "death.attack.morefluideffects.acid": "%1$s tried to swim in acid.",
+  "death.attack.morefluideffects.acid.player": "%1$s tried to swim in acid to escape %2$s.",
+  "death.attack.morefluideffects.heat": "%1$s tried to swim in high temperature material.",
+  "death.attack.morefluideffects.heat.player": "%1$s tried to swim in high temperature material to escape %2$s."
+}
