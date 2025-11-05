@@ -5,6 +5,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 
@@ -14,9 +15,9 @@ public class FluidBehaviourHandler {
     private FluidBehaviourHandler() {}
 
     @SubscribeEvent
-    public static void onServerAboutToStart(net.neoforged.neoforge.event.server.ServerAboutToStartEvent e) {
-        DefaultFluidGroups.registerFluidGroups();
-        FluidIdGroup.rebuildAll(e.getServer().registryAccess());
+    public static void onServerAboutToStart(ServerAboutToStartEvent e) {
+        DefaultFluidGroups.registerFluidEffects();
+        FluidEffectsRegistry.rebuildMap(e.getServer().registryAccess());
     }
 
     @SubscribeEvent
@@ -32,6 +33,6 @@ public class FluidBehaviourHandler {
         if (living.isAlive() == false)
             return;
 
-        FluidIdGroup.tickAll(living);
+        FluidEffectsRegistry.tickFluid(living);
     }
 }
