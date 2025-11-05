@@ -28,7 +28,6 @@ public class FluidExplosionOnFireEffect extends FluidEffect {
         if (living.wasOnFire) {
             Level level = living.level();
 
-            // level.explode(living, x, y, z, 4.0F, Level.ExplosionInteraction.TNT);
             level.explode(null, Explosion.getDefaultDamageSource(level, living), null,
                     living.getX(), living.getY(0.0625F), living.getZ(), 4.0F, true, Level.ExplosionInteraction.TNT);
             living.extinguishFire();

@@ -186,3 +186,13 @@ idea {
         downloadJavadoc = true
     }
 }
+
+tasks.jar {
+    from("logo.png")  { into("") }
+    from("LICENSE")   { into("") }
+    filesMatching(["logo.png", "LICENSE"]) {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+    archiveBaseName.set("${mod_name}-neoforge")
+    archiveVersion.set("${mod_version}-mc${minecraft_version}")
+}
