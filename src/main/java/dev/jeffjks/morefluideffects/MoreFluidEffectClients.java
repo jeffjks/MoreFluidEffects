@@ -25,7 +25,5 @@ public class MoreFluidEffectClients {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
-        MoreFluidEffects.LOGGER.info("HELLO FROM CLIENT SETUP");
-        MoreFluidEffects.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
     }
 }

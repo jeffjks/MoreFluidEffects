@@ -7,16 +7,17 @@ import net.minecraft.world.entity.LivingEntity;
 public class FluidPoisonEffect extends FluidEffect {
 
     private final int duration;
-    private final int amplifier;
+    private final int level;
 
-    public FluidPoisonEffect(int interval, int duration, int amplifier) {
+    public FluidPoisonEffect(int interval, int duration, int level) {
         super(interval);
         this.duration = duration;
-        this.amplifier = amplifier;
+        this.level = level;
     }
 
     @Override
     protected void apply(LivingEntity living) {
+        int amplifier = level - 1;
         living.addEffect(new MobEffectInstance(MobEffects.POISON, duration, amplifier));
     }
 }

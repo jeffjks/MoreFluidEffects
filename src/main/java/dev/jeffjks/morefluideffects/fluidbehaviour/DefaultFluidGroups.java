@@ -1,103 +1,127 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
+import dev.jeffjks.morefluideffects.MoreFluidEffects;
+import dev.jeffjks.morefluideffects.mixin.FluidTypeAccessor;
+import dev.jeffjks.morefluideffects.utils.FluidHelper;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
 
 public final class DefaultFluidGroups {
+    private static final FluidEffect ACID_EFFECT = new FluidAcidEffect(2F);
+    private static final FluidEffect CRYOGENIC_EFFECT = new FluidCryogenicEffect(2F, 6, 360);
+    private static final FluidEffect EXPLOSION_ON_FIRE_EFFECT = new FluidExplosionOnFireEffect(4F);
+    private static final FluidEffect EXTEND_FIRE_EFFECT = new FluidExtendFireEffect(300);
+    private static final FluidEffect EXTINGUISH_FIRE_EFFECT = new FluidExtinguishFireEffect(); // Deprecated
+    private static final FluidEffect FREEZE_EFFECT_1 = new FluidFreezeEffect(1, 140);
+    private static final FluidEffect FREEZE_EFFECT_2 = new FluidFreezeEffect(3, 240);
+    private static final FluidEffect HEAT_EFFECT = new FluidHeatEffect(2F);
+    private static final FluidEffect POISON_EFFECT_1 = new FluidPoisonEffect(25, 60, 1);
+    private static final FluidEffect POISON_EFFECT_2 = new FluidPoisonEffect(12, 60, 2);
+    private static final FluidEffect SUPER_HEAT_EFFECT = new FluidSuperHeatEffect(4F);
+    private static final FluidEffect WATER_LIKE_EFFECT = new FluidWaterLikeEffect();
+
     private DefaultFluidGroups() {}
 
     public static void registerFluidEffects() {
-        registerFluid("mekanism", "hydrogen", List.of(
-                new FluidCryogenicEffect(),
-                new FluidExtinguishFireEffect()
+        mapFluidEffect("mekanism", "hydrogen", true, List.of(
+                CRYOGENIC_EFFECT
         ));
-        registerFluid("mekanism", "oxygen", List.of(
-                new FluidCryogenicEffect(),
-                new FluidExtinguishFireEffect()
+        mapFluidEffect("mekanism", "oxygen", true, List.of(
+                CRYOGENIC_EFFECT
         ));
-        registerFluid("mekanism", "chlorine", List.of(
-                new FluidPoisonEffect(12, 60, 1),
-                new FluidFreezeEffect(2, 160),
-                new FluidExtinguishFireEffect()
+        mapFluidEffect("mekanism", "chlorine", true, List.of(
+                POISON_EFFECT_2,
+                FREEZE_EFFECT_2
         ));
-        registerFluid("mekanism", "sulfur_dioxide", List.of(
-                new FluidPoisonEffect(25, 60, 0),
-                new FluidExtinguishFireEffect()
+        mapFluidEffect("mekanism", "sulfur_dioxide", true, List.of(
+                POISON_EFFECT_1
         ));
-        registerFluid("mekanism", "sulfur_trioxide", List.of(
-                new FluidAcidEffect(2f),
-                new FluidExtinguishFireEffect()
+        mapFluidEffect("mekanism", "sulfur_trioxide", true, List.of(
+                ACID_EFFECT
         ));
-        registerFluid("mekanism", "sulfuric_acid", List.of(
-                new FluidAcidEffect(2f),
-                new FluidExtinguishFireEffect()
+        mapFluidEffect("mekanism", "sulfuric_acid", true, List.of(
+                ACID_EFFECT
         ));
-        registerFluid("mekanism", "hydrogen_chloride", List.of(
-                new FluidAcidEffect(2f),
-                new FluidExtinguishFireEffect()
+        mapFluidEffect("mekanism", "hydrogen_chloride", true, List.of(
+                ACID_EFFECT
         ));
-        registerFluid("mekanism", "hydrofluoric_acid", List.of(
-                new FluidAcidEffect(2f),
-                new FluidExtinguishFireEffect()
+        mapFluidEffect("mekanism", "hydrofluoric_acid", true, List.of(
+                ACID_EFFECT
         ));
-        registerFluid("mekanism", "uranium_oxide", List.of(
-                new FluidSuperHeatEffect(4f)
+        mapFluidEffect("mekanism", "uranium_oxide", List.of(
+                SUPER_HEAT_EFFECT
         ));
-        registerFluid("mekanism", "uranium_hexafluoride", List.of(
-                new FluidHeatEffect(2f),
-                new FluidExtinguishFireEffect()
+        mapFluidEffect("mekanism", "uranium_hexafluoride", true, List.of(
+                HEAT_EFFECT
         ));
-        registerFluid("mekanism", "ethene", List.of(
-                new FluidFreezeEffect(3, 240),
-                new FluidExplosionOnFireEffect()
+        mapFluidEffect("mekanism", "ethene", List.of(
+                FREEZE_EFFECT_2,
+                EXPLOSION_ON_FIRE_EFFECT
         ));
-        registerFluid("mekanism", "sodium", List.of(
-                new FluidHeatEffect(2f),
-                new FluidExtinguishFireEffect()
+        mapFluidEffect("mekanism", "sodium", true, List.of(
+                HEAT_EFFECT
         ));
-        registerFluid("mekanism", "superheated_sodium", List.of(
-                new FluidSuperHeatEffect(4f)
+        mapFluidEffect("mekanism", "superheated_sodium", List.of(
+                SUPER_HEAT_EFFECT
         ));
-        registerFluid("mekanism", "brine", List.of(
-                new FluidExtinguishFireEffect(),
-                new FluidWaterLikeEffect()
+        mapFluidEffect("mekanism", "brine", true, List.of(
+                WATER_LIKE_EFFECT
         ));
-        registerFluid("mekanism", "lithium", List.of(
-                new FluidSuperHeatEffect(4f)
+        mapFluidEffect("mekanism", "lithium", List.of(
+                SUPER_HEAT_EFFECT
         ));
-        registerFluid("mekanism", "steam", List.of(
-                new FluidExtinguishFireEffect(),
-                new FluidWaterLikeEffect()
+        mapFluidEffect("mekanism", "steam", true, List.of(
+                WATER_LIKE_EFFECT
         ));
-        registerFluid("mekanism", "heavy_water", List.of(
-                new FluidExtinguishFireEffect(),
-                new FluidWaterLikeEffect()
+        mapFluidEffect("mekanism", "heavy_water", true, List.of(
+                WATER_LIKE_EFFECT
         ));
-        registerFluid("mekanism", "nutritional_paste", List.of(
-                new FluidExtinguishFireEffect()
+        mapFluidEffect("mekanism", "nutritional_paste", true, null);
+        mapFluidEffect("mekanismgenerators", "bioethanol", List.of(
+                EXTEND_FIRE_EFFECT
         ));
-        registerFluid("mekanismgenerators", "bioethanol", List.of(
-                new FluidExtendFireEffect(300)
+        mapFluidEffect("mekanismgenerators", "deuterium", true, List.of(
+                CRYOGENIC_EFFECT
         ));
-        registerFluid("mekanismgenerators", "deuterium", List.of(
-                new FluidCryogenicEffect(),
-                new FluidExtinguishFireEffect()
+        mapFluidEffect("mekanismgenerators", "fusion_fuel", true, List.of(
+                CRYOGENIC_EFFECT
         ));
-        registerFluid("mekanismgenerators", "fusion_fuel", List.of(
-                new FluidCryogenicEffect(),
-                new FluidExtinguishFireEffect()
+        mapFluidEffect("mekanismgenerators", "tritium", true, List.of(
+                CRYOGENIC_EFFECT
         ));
-        registerFluid("mekanismgenerators", "tritium", List.of(
-                new FluidCryogenicEffect(),
-                new FluidExtinguishFireEffect()
+
+        mapFluidEffect("create", "honey", true, null);
+        mapFluidEffect("create", "chocolate", true, null);
+        mapFluidEffect("createadditions", "seed_oil", List.of(
+                EXTEND_FIRE_EFFECT
         ));
-        registerFluid("createadditions", "seed_oil", List.of(
-                new FluidExtendFireEffect(300)
+
+        mapFluidEffect("supplementaries", "lumisene", List.of(
+                SUPER_HEAT_EFFECT
         ));
     }
 
-    private static void registerFluid(String namespace, String path, List<FluidEffect> effectList) {
+    private static void mapFluidEffect(String namespace, String path, List<FluidEffect> effectList) {
         FluidEffectsRegistry.register(ResourceLocation.fromNamespaceAndPath(namespace, path), effectList);
+    }
+
+    private static void mapFluidEffect(ResourceLocation loc, List<FluidEffect> effectList) {
+        FluidEffectsRegistry.register(loc, effectList);
+    }
+
+    private static void mapFluidEffect(String namespace, String path, boolean canExtinguish, List<FluidEffect> effectList) {
+        var loc = ResourceLocation.fromNamespaceAndPath(namespace, path);
+        modifyFluidProperty(loc, canExtinguish);
+        mapFluidEffect(loc, effectList);
+    }
+
+    private static void modifyFluidProperty(ResourceLocation loc, boolean canExtinguish) {
+        var fluidType = FluidHelper.getFluidType(loc);
+        if (fluidType == null) {
+            MoreFluidEffects.LOGGER.warn("No such fluid type: {}", loc);
+            return;
+        }
+        ((FluidTypeAccessor) fluidType).setCanExtinguish(canExtinguish);
     }
 }

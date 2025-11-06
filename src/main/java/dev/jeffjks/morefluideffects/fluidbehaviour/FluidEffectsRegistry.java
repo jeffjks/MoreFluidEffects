@@ -17,6 +17,8 @@ public final class FluidEffectsRegistry {
 
     // --- 등록 API ---
     public static void register(ResourceLocation fluidId, List<FluidEffect> effects) {
+        if (effects == null || effects.size() == 0)
+            return;
         FLUID_IDS_MAP.computeIfAbsent(fluidId, k -> new ArrayList<>()).addAll(effects);
     }
     public static void register(ResourceLocation fluidId, FluidEffect effects) {
