@@ -5,7 +5,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 public class FluidSuperHeatEffect extends FluidEffect {
 
-    private final int fireTicks = 300;
+    private final float igniteSeconds = 15F;
     private final float damage;
 
     public FluidSuperHeatEffect(float damage) {
@@ -15,12 +15,8 @@ public class FluidSuperHeatEffect extends FluidEffect {
 
     @Override
     protected void apply(LivingEntity living) {
-        living.igniteForTicks(fireTicks);
+        if (!living.fireImmune())
+            living.igniteForSeconds(igniteSeconds);
         living.hurt(ModDamageTypes.of(living.level(), ModDamageTypes.HEAT), damage);
     }
-
-    //@Override
-    //protected void apply(ItemEntity itemEntity) {
-    //    itemEntity.setRemainingFireTicks(fireTicks);
-    //}
 }

@@ -1,6 +1,8 @@
 package dev.jeffjks.morefluideffects;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -25,5 +27,9 @@ public class MoreFluidEffectClients {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
+    }
+
+    public static void DisplayText(LivingEntity player, String msg) {
+        player.sendSystemMessage(Component.literal(msg));
     }
 }

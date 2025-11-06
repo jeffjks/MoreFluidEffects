@@ -1,9 +1,14 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
+import dev.jeffjks.morefluideffects.MoreFluidEffectClients;
 import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import dev.jeffjks.morefluideffects.mixin.FluidTypeAccessor;
+import dev.jeffjks.morefluideffects.api.SuperHeatedExt;
 import dev.jeffjks.morefluideffects.utils.FluidHelper;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.neoforge.common.NeoForgeMod;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.List;
 
@@ -49,26 +54,26 @@ public final class DefaultFluidGroups {
         mapFluidEffect("mekanism", "hydrofluoric_acid", true, List.of(
                 ACID_EFFECT
         ));
-        mapFluidEffect("mekanism", "uranium_oxide", List.of(
+        mapFluidEffect("mekanism", "uranium_oxide", false, List.of(
                 SUPER_HEAT_EFFECT
         ));
         mapFluidEffect("mekanism", "uranium_hexafluoride", true, List.of(
                 HEAT_EFFECT
         ));
-        mapFluidEffect("mekanism", "ethene", List.of(
+        mapFluidEffect("mekanism", "ethene", false, List.of(
                 FREEZE_EFFECT_2,
                 EXPLOSION_ON_FIRE_EFFECT
         ));
         mapFluidEffect("mekanism", "sodium", true, List.of(
                 HEAT_EFFECT
         ));
-        mapFluidEffect("mekanism", "superheated_sodium", List.of(
+        mapFluidEffect("mekanism", "superheated_sodium", false, List.of(
                 SUPER_HEAT_EFFECT
         ));
         mapFluidEffect("mekanism", "brine", true, List.of(
                 WATER_LIKE_EFFECT
         ));
-        mapFluidEffect("mekanism", "lithium", List.of(
+        mapFluidEffect("mekanism", "lithium", false, List.of(
                 SUPER_HEAT_EFFECT
         ));
         mapFluidEffect("mekanism", "steam", true, List.of(
@@ -78,7 +83,7 @@ public final class DefaultFluidGroups {
                 WATER_LIKE_EFFECT
         ));
         mapFluidEffect("mekanism", "nutritional_paste", true, null);
-        mapFluidEffect("mekanismgenerators", "bioethanol", List.of(
+        mapFluidEffect("mekanismgenerators", "bioethanol", false, List.of(
                 EXTEND_FIRE_EFFECT
         ));
         mapFluidEffect("mekanismgenerators", "deuterium", true, List.of(
@@ -93,35 +98,42 @@ public final class DefaultFluidGroups {
 
         mapFluidEffect("create", "honey", true, null);
         mapFluidEffect("create", "chocolate", true, null);
-        mapFluidEffect("createadditions", "seed_oil", List.of(
+        mapFluidEffect("createadditions", "seed_oil", false, List.of(
                 EXTEND_FIRE_EFFECT
         ));
 
-        mapFluidEffect("supplementaries", "lumisene", List.of(
+        mapFluidEffect("supplementaries", "lumisene", false, List.of(
                 SUPER_HEAT_EFFECT
         ));
-    }
 
-    private static void mapFluidEffect(String namespace, String path, List<FluidEffect> effectList) {
-        FluidEffectsRegistry.register(ResourceLocation.fromNamespaceAndPath(namespace, path), effectList);
-    }
-
-    private static void mapFluidEffect(ResourceLocation loc, List<FluidEffect> effectList) {
-        FluidEffectsRegistry.register(loc, effectList);
+        setSuperHeatedFieldToLava();
     }
 
     private static void mapFluidEffect(String namespace, String path, boolean canExtinguish, List<FluidEffect> effectList) {
         var loc = ResourceLocation.fromNamespaceAndPath(namespace, path);
-        modifyFluidProperty(loc, canExtinguish);
-        mapFluidEffect(loc, effectList);
-    }
 
-    private static void modifyFluidProperty(ResourceLocation loc, boolean canExtinguish) {
         var fluidType = FluidHelper.getFluidType(loc);
         if (fluidType == null) {
-            MoreFluidEffects.LOGGER.warn("No such fluid type: {}", loc);
-            return;
+            MoreFluidEffects.LOGGER.info("No such fluid type: {}", loc);
         }
+        else {
+            modifyFluidProperty(fluidType, canExtinguish, effectList);
+        }
+
+        FluidEffectsRegistry.register(loc, effectList);
+    }
+
+    private static void modifyFluidProperty(FluidType fluidType, boolean canExtinguish, List<FluidEffect> effectList) {
         ((FluidTypeAccessor) fluidType).setCanExtinguish(canExtinguish);
+
+        if (effectList != null && effectList.contains(SUPER_HEAT_EFFECT)) {
+            ((SuperHeatedExt) fluidType).mfx$setSuperHeated(true);
+            ((SuperHeatedExt) fluidType).mfx$lockSuperHeated();
+        }
+    }
+
+    private static void setSuperHeatedFieldToLava() {
+        var lavaType = NeoForgeMod.LAVA_TYPE.value();
+        ((SuperHeatedExt) lavaType).mfx$lockSuperHeated();
     }
 }

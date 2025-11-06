@@ -3,7 +3,10 @@
   "package": "dev.jeffjks.morefluideffects.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "FluidTypeAccessor"
+    "EntitySuperHeatedBurnCheckMixin",
+    "EntitySuperHeatedIgnoreFireDamage",
+    "FluidTypeAccessor",
+    "FluidTypeSuperHeatedMixin"
   ],
   "injectors": {
     "defaultRequire": 1
