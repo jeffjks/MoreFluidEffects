@@ -1,14 +1,10 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
-import dev.jeffjks.morefluideffects.MoreFluidEffectClients;
-import dev.jeffjks.morefluideffects.api.SuperHeatedExt;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
-import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.fluids.FluidType;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;

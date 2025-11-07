@@ -1,5 +1,6 @@
 package dev.jeffjks.morefluideffects.mixin;
 
+import dev.jeffjks.morefluideffects.api.FluidTypeExt;
 import net.minecraft.world.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -7,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 // Entity in super heated fluid ignore fire damage
 @Mixin(Entity.class)
-public abstract class EntitySuperHeatedIgnoreFireDamage {
+public abstract class EntitySuperHeatedIgnoreFireDamageMixin {
 
     @Redirect(
             method = "baseTick",
@@ -20,7 +21,7 @@ public abstract class EntitySuperHeatedIgnoreFireDamage {
     private boolean mfx$redirectIsInLava(Entity self) {
         boolean lava = self.isInLava();
         boolean superheated = self.isInFluidType((type, height) ->
-                ((dev.jeffjks.morefluideffects.api.SuperHeatedExt)(Object) type).mfx$isSuperHeated()
+                ((FluidTypeExt) type).mfx$isSuperHeated()
         );
 
         return lava || superheated;

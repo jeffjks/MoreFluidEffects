@@ -1,12 +1,15 @@
 {
   "required": true,
+  "refmap": "morefluideffects.refmap.json",
   "package": "dev.jeffjks.morefluideffects.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "CallerVaporizeRedirectMixin",
     "EntitySuperHeatedBurnCheckMixin",
-    "EntitySuperHeatedIgnoreFireDamage",
-    "FluidTypeAccessor",
-    "FluidTypeSuperHeatedMixin"
+    "EntitySuperHeatedIgnoreFireDamageMixin",
+    "FluidTypeCanExtinguishMixin",
+    "FluidTypeFluidTypeMixin",
+    "FluidTypeVaporizeCheckMixin"
   ],
   "injectors": {
     "defaultRequire": 1
