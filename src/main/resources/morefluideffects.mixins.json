@@ -7,9 +7,7 @@
     "CallerVaporizeRedirectMixin",
     "EntitySuperHeatedBurnCheckMixin",
     "EntitySuperHeatedIgnoreFireDamageMixin",
-    "FluidTypeCanExtinguishMixin",
-    "FluidTypeFluidTypeMixin",
-    "FluidTypeVaporizeCheckMixin"
+    "FluidTypeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

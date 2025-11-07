@@ -2,9 +2,6 @@ package dev.jeffjks.morefluideffects.fluidbehaviour;
 
 import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import dev.jeffjks.morefluideffects.api.FluidTypeExt;
-import dev.jeffjks.morefluideffects.mixin.FluidTypeCanExtinguishMixin;
-import dev.jeffjks.morefluideffects.mixin.FluidTypeFluidTypeMixin;
-import dev.jeffjks.morefluideffects.mixin.FluidTypeVaporizeCheckMixin;
 import dev.jeffjks.morefluideffects.utils.FluidHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.NeoForgeMod;
@@ -126,7 +123,7 @@ public final class DefaultFluidGroups {
 
     private static void modifyFluidProperty(FluidType fluidType, boolean canExtinguish, boolean vaporizesInUltraWarm,
                                             List<FluidEffect> effectList) {
-        ((FluidTypeCanExtinguishMixin) fluidType).setCanExtinguish(canExtinguish);
+        ((FluidTypeExt) fluidType).mfx$setCanExtinguish(canExtinguish);
         ((FluidTypeExt) fluidType).mfx$setVaporizesInUltraWarm(vaporizesInUltraWarm);
 
         if (effectList != null && effectList.contains(SUPER_HEAT_EFFECT)) {
