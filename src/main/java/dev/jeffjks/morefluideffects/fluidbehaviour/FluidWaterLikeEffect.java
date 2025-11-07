@@ -1,5 +1,6 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
 public class FluidWaterLikeEffect extends FluidEffect {
@@ -11,9 +12,11 @@ public class FluidWaterLikeEffect extends FluidEffect {
     }
 
     @Override
-    protected void apply(LivingEntity living) {
-        if (living.isSensitiveToWater()) {
-            living.hurt(living.damageSources().drown(), waterDamage);
+    protected void apply(Entity entity) {
+        if (entity instanceof LivingEntity living) {
+            if (living.isSensitiveToWater()) {
+                living.hurt(living.damageSources().drown(), waterDamage);
+            }
         }
     }
 }

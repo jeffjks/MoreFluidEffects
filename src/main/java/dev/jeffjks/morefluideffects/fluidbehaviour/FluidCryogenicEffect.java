@@ -1,5 +1,6 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
 public class FluidCryogenicEffect extends FluidEffect {
@@ -16,8 +17,10 @@ public class FluidCryogenicEffect extends FluidEffect {
     }
 
     @Override
-    protected void apply(LivingEntity living) {
-        living.hurt(living.damageSources().freeze(), freezeDamage);
-        living.setTicksFrozen(Math.min(living.getTicksFrozen() + frozenTick + 2, maxFrozenTick)); // -2 every tick in vanilla
+    protected void apply(Entity entity) {
+        if (entity instanceof LivingEntity living) {
+            living.hurt(living.damageSources().freeze(), freezeDamage);
+            living.setTicksFrozen(Math.min(living.getTicksFrozen() + frozenTick + 2, maxFrozenTick)); // -2 every tick in vanilla
+        }
     }
 }

@@ -1,6 +1,6 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
 
 public class FluidExtendFireEffect extends FluidEffect {
 
@@ -12,9 +12,9 @@ public class FluidExtendFireEffect extends FluidEffect {
     }
 
     @Override
-    protected void apply(LivingEntity living) {
-        if (0 < living.getRemainingFireTicks()) {
-            living.igniteForTicks(fireTicks);
+    protected void apply(Entity entity) {
+        if (0 < entity.getRemainingFireTicks()) {
+            entity.igniteForTicks(fireTicks);
         }
     }
 }

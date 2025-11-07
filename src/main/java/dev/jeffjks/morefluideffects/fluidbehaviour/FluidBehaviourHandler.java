@@ -21,18 +21,17 @@ public class FluidBehaviourHandler {
     }
 
     @SubscribeEvent
-    public static void onLivingTick(EntityTickEvent.Post event) {
-        if (!(event.getEntity() instanceof LivingEntity living)) {
-            return;
-        }
-        final Level level = living.level();
+    public static void onEntityTick(final EntityTickEvent.Post event) {
+//        if (!(event.getEntity() instanceof LivingEntity living)) {
+//            return;
+//        }
+        var entity = event.getEntity();
+
+        final Level level = entity.level();
 
         if (level.isClientSide())
             return;
 
-        if (living.isAlive() == false)
-            return;
-
-        FluidEffectsRegistry.tickFluid(living);
+        FluidEffectsRegistry.tickFluid(entity);
     }
 }

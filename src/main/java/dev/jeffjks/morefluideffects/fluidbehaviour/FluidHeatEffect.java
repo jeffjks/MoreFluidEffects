@@ -1,7 +1,9 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
 import dev.jeffjks.morefluideffects.common.registry.ModDamageTypes;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 
 public class FluidHeatEffect extends FluidEffect {
 
@@ -13,7 +15,12 @@ public class FluidHeatEffect extends FluidEffect {
     }
 
     @Override
-    protected void apply(LivingEntity living) {
-        living.hurt(ModDamageTypes.of(living.level(), ModDamageTypes.HEAT), damage);
+    protected void apply(Entity entity) {
+        if (entity instanceof LivingEntity living) {
+            living.hurt(ModDamageTypes.of(living.level(), ModDamageTypes.HEAT), damage);
+        }
+        else if (entity instanceof ItemEntity itemEntity) {
+            // itemEntity.
+        }
     }
 }

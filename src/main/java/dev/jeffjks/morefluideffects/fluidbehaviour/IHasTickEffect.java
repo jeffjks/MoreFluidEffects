@@ -1,7 +1,7 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
 
 public interface IHasTickEffect {
-    void tick(LivingEntity living);
+    void tick(Entity entity);
 }

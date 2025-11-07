@@ -1,6 +1,6 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
 
 public abstract class FluidEffect implements IHasTickEffect {
     protected final int interval;
@@ -10,10 +10,10 @@ public abstract class FluidEffect implements IHasTickEffect {
     }
 
     @Override
-    public final void tick(LivingEntity living) {
-        if (living.tickCount % interval == 0)
-            apply(living);
+    public final void tick(Entity entity) {
+        if (entity.tickCount % interval == 0)
+            apply(entity);
     }
 
-    protected abstract void apply(LivingEntity living);
+    protected abstract void apply(Entity entity);
 }

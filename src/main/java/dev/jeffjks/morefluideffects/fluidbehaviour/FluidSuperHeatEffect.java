@@ -1,7 +1,8 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
 import dev.jeffjks.morefluideffects.common.registry.ModDamageTypes;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.Entity;
 
 public class FluidSuperHeatEffect extends FluidEffect {
 
@@ -14,9 +15,12 @@ public class FluidSuperHeatEffect extends FluidEffect {
     }
 
     @Override
-    protected void apply(LivingEntity living) {
-        if (!living.fireImmune())
-            living.igniteForSeconds(igniteSeconds);
-        living.hurt(ModDamageTypes.of(living.level(), ModDamageTypes.HEAT), damage);
+    protected void apply(Entity entity) {
+        if (!entity.fireImmune()) {
+            entity.igniteForSeconds(igniteSeconds);
+            if (entity.hurt(ModDamageTypes.of(entity.level(), ModDamageTypes.HEAT), damage)) {
+                entity.playSound(SoundEvents.GENERIC_BURN, 0.4F, 2.0F + entity.getRandom().nextFloat() * 0.4F);
+            }
+        }
     }
 }

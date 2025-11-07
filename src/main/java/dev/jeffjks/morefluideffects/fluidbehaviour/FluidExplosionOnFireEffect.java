@@ -1,6 +1,6 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 
@@ -14,13 +14,14 @@ public class FluidExplosionOnFireEffect extends FluidEffect {
     }
 
     @Override
-    protected void apply(LivingEntity living) {
-        if (living.wasOnFire) {
-            Level level = living.level();
+    protected void apply(Entity entity) {
+        if (entity.wasOnFire == false)
+            return;
 
-            level.explode(null, Explosion.getDefaultDamageSource(level, living), null,
-                    living.getX(), living.getY(0.0625F), living.getZ(), explosionRadius, true, Level.ExplosionInteraction.TNT);
-            living.extinguishFire();
-        }
+        Level level = entity.level();
+
+        level.explode(null, Explosion.getDefaultDamageSource(level, entity), null,
+                entity.getX(), entity.getY(0.0625F), entity.getZ(), explosionRadius, true, Level.ExplosionInteraction.TNT);
+        entity.extinguishFire();
     }
 }

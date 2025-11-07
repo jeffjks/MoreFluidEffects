@@ -1,6 +1,7 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
 import dev.jeffjks.morefluideffects.common.registry.ModDamageTypes;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
 public class FluidAcidEffect extends FluidEffect {
@@ -13,7 +14,9 @@ public class FluidAcidEffect extends FluidEffect {
     }
 
     @Override
-    protected void apply(LivingEntity living) {
-        living.hurt(ModDamageTypes.of(living.level(), ModDamageTypes.ACID), damage);
+    protected void apply(Entity entity) {
+        if (!(entity instanceof LivingEntity))
+            return;
+        entity.hurt(ModDamageTypes.of(entity.level(), ModDamageTypes.ACID), damage);
     }
 }

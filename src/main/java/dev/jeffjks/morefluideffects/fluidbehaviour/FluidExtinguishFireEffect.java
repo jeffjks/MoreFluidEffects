@@ -1,6 +1,6 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
 
 public class FluidExtinguishFireEffect extends FluidEffect {
 
@@ -9,7 +9,7 @@ public class FluidExtinguishFireEffect extends FluidEffect {
     }
 
     @Override
-    protected void apply(LivingEntity living) {
-        living.extinguishFire();
+    protected void apply(Entity entity) {
+        entity.extinguishFire();
     }
 }
