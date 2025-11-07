@@ -95,6 +95,9 @@ public final class DefaultFluidGroups {
 
         mapFluidEffect("create", "honey", true, true, null);
         mapFluidEffect("create", "chocolate", true, true, null);
+        mapFluidEffect("createadditions", "bioethanol", false, true, List.of(
+                EXTEND_FIRE_EFFECT
+        ));
         mapFluidEffect("createadditions", "seed_oil", false, true, List.of(
                 EXTEND_FIRE_EFFECT
         ));
