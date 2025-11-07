@@ -1,8 +1,6 @@
 package dev.jeffjks.morefluideffects.utils;
 
-import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
