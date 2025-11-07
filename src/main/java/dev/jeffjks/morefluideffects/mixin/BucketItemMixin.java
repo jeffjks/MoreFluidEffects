@@ -10,10 +10,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-// Prevent call overridden isVaporizedOnPlacement
 @Mixin(BucketItem.class)
-public abstract class CallerVaporizeRedirectMixin {
+public abstract class BucketItemMixin {
 
+    // Prevent call overridden(modded) isVaporizedOnPlacement
     @Redirect(
             method = "emptyContents(Lnet/minecraft/world/entity/player/Player;" +
                     "Lnet/minecraft/world/level/Level;" +
@@ -25,7 +25,7 @@ public abstract class CallerVaporizeRedirectMixin {
                     target = "Lnet/neoforged/neoforge/fluids/FluidType;isVaporizedOnPlacement(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/neoforged/neoforge/fluids/FluidStack;)Z"
             )
     )
-    private boolean mfx$redirectIsVaporizedOnPlacement(FluidType self, Level level, BlockPos pos, FluidStack stack) {
+    private boolean mfx$redirectedIsVaporizedOnPlacement(FluidType self, Level level, BlockPos pos, FluidStack stack) {
         boolean orig = self.isVaporizedOnPlacement(level, pos, stack);
         boolean extra = level.dimensionType().ultraWarm()
                 && ((FluidTypeExt) self).mfx$isVaporizesInUltraWarm();

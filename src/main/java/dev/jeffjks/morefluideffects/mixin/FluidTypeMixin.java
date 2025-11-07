@@ -9,7 +9,6 @@ import net.neoforged.neoforge.fluids.FluidType;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 
-// Mixin
 @Mixin(FluidType.class)
 public abstract class FluidTypeMixin implements FluidTypeExt {
     @Shadow @Final @Mutable
@@ -58,7 +57,7 @@ public abstract class FluidTypeMixin implements FluidTypeExt {
             method = "isVaporizedOnPlacement",
             at = @At("RETURN")
     )
-    private boolean mfx$extendUltraWarmVaporize(boolean original, Level level, BlockPos pos, FluidStack stack) {
+    private boolean mfx$modifiedIsVaporizedOnPlacement(boolean original, Level level, BlockPos pos, FluidStack stack) {
         if (!level.dimensionType().ultraWarm())
             return original; // 첫 번째 return은 유지
         FluidType self = (FluidType)(Object) this;

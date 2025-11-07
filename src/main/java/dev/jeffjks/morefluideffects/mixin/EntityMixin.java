@@ -7,11 +7,12 @@ import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
-// Entity in super heated fluid ignore extinguish fire
 @Mixin(Entity.class)
-public abstract class EntitySuperHeatedBurnCheckMixin {
+public abstract class EntityMixin {
 
+    // Entity in super heated fluid ignore extinguish fire
     @ModifyExpressionValue(
             method = "move",
             at = @At(
@@ -31,5 +32,24 @@ public abstract class EntitySuperHeatedBurnCheckMixin {
         }
 
         return original; // 기본 동작 유지
+    }
+
+
+    // Entity in super heated fluid ignore fire damage
+    @Redirect(
+            method = "baseTick",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/entity/Entity;isInLava()Z",
+                    ordinal = 0
+            )
+    )
+    private boolean mfx$redirectedIsInLava(Entity self) {
+        boolean lava = self.isInLava();
+        boolean superheated = self.isInFluidType((type, height) ->
+                ((FluidTypeExt) type).mfx$isSuperHeated()
+        );
+
+        return lava || superheated;
     }
 }

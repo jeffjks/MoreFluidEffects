@@ -4,9 +4,8 @@
   "package": "dev.jeffjks.morefluideffects.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "CallerVaporizeRedirectMixin",
-    "EntitySuperHeatedBurnCheckMixin",
-    "EntitySuperHeatedIgnoreFireDamageMixin",
+    "BucketItemMixin",
+    "EntityMixin",
     "FluidTypeMixin"
   ],
   "injectors": {
