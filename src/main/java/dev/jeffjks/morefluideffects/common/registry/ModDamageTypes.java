@@ -44,6 +44,6 @@ public class ModDamageTypes {
     }
 
     private static ResourceKey<DamageType> create(String path) {
-        return ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(MoreFluidEffects.MODID, path));
+        return ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(MoreFluidEffects.MOD_ID, path));
     }
 }

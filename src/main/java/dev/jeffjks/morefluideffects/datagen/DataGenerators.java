@@ -16,7 +16,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-@EventBusSubscriber(modid = MoreFluidEffects.MODID)
+@EventBusSubscriber(modid = MoreFluidEffects.MOD_ID)
 public class DataGenerators {
 
     private DataGenerators() {
@@ -32,7 +32,7 @@ public class DataGenerators {
         var builder = new RegistrySetBuilder()
                 .add(Registries.DAMAGE_TYPE, ModDamageTypes::bootstrap);
         var builtin = new DatapackBuiltinEntriesProvider(
-                packOutput, lookupProvider, builder, Set.of(MoreFluidEffects.MODID)
+                packOutput, lookupProvider, builder, Set.of(MoreFluidEffects.MOD_ID)
         );
         generator.addProvider(event.includeServer(), builtin);
 

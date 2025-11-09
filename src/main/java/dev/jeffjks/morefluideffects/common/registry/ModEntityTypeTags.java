@@ -12,6 +12,6 @@ public class ModEntityTypeTags {
     public static final TagKey<EntityType<?>> IMMUNE_TO_CRYOGENIC = create("immune_to_cryogenic");
 
     private static TagKey<EntityType<?>> create(String name) {
-        return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(MoreFluidEffects.MODID, name));
+        return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(MoreFluidEffects.MOD_ID, name));
     }
 }

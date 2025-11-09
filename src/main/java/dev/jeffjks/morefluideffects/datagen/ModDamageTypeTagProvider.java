@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 public class ModDamageTypeTagProvider extends DamageTypeTagsProvider {
 
     public ModDamageTypeTagProvider(PackOutput output, CompletableFuture<Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, MoreFluidEffects.MODID, existingFileHelper);
+        super(output, lookupProvider, MoreFluidEffects.MOD_ID, existingFileHelper);
     }
 
     @Override

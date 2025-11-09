@@ -17,7 +17,7 @@ public class TagRegister {
         public static final TagKey<DamageType> ACID = tag("acid");
 
         private static TagKey<DamageType> tag(String name) {
-            return TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(MoreFluidEffects.MODID, name));
+            return TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(MoreFluidEffects.MOD_ID, name));
         }
     }
 }

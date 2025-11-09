@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
 
     public ModEntityTypeTagProvider(PackOutput output, CompletableFuture<Provider> provider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(output, provider, MoreFluidEffects.MODID, existingFileHelper);
+        super(output, provider, MoreFluidEffects.MOD_ID, existingFileHelper);
     }
 
     @Override

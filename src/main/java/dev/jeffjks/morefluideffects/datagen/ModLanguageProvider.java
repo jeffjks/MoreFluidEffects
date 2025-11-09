@@ -12,11 +12,11 @@ public class ModLanguageProvider extends LanguageProvider {
     final private String locale;
 
     public ModLanguageProvider(PackOutput output, String locale) {
-        this(output, MoreFluidEffects.MODID, locale);
+        this(output, MoreFluidEffects.MOD_ID, locale);
     }
 
     public ModLanguageProvider(PackOutput output) {
-        this(output, MoreFluidEffects.MODID, "en_us");
+        this(output, MoreFluidEffects.MOD_ID, "en_us");
     }
 
     public ModLanguageProvider(PackOutput output, String modid, String locale) {
