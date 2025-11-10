@@ -18,8 +18,8 @@ public final class DefaultFluidGroups {
     private static final FluidEffect FREEZE_EFFECT_1 = new FluidFreezeEffect(1, 140);
     private static final FluidEffect FREEZE_EFFECT_2 = new FluidFreezeEffect(3, 240);
     private static final FluidEffect HEAT_EFFECT = new FluidHeatEffect(2F);
-    private static final FluidEffect POISON_EFFECT_1 = new FluidPoisonEffect(25, 60, 1);
-    private static final FluidEffect POISON_EFFECT_2 = new FluidPoisonEffect(12, 60, 2);
+    private static final FluidEffect POISON_EFFECT_1 = new FluidGenericEffect(25, "minecraft:poison", 60, 1);
+    private static final FluidEffect POISON_EFFECT_2 = new FluidGenericEffect(12, "minecraft:poison", 60, 2);
     private static final FluidEffect SUPER_HEAT_EFFECT = new FluidSuperHeatEffect(4F);
     private static final FluidEffect WATER_LIKE_EFFECT = new FluidWaterLikeEffect();
 
