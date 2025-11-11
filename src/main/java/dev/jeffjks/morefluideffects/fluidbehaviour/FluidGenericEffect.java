@@ -12,7 +12,7 @@ public class FluidGenericEffect extends FluidEffect {
     private final int duration;
     private final int effectLevel;
 
-    public FluidGenericEffect(int interval, String mobEffectId, int duration, int effectLevel) {
+    public FluidGenericEffect(String mobEffectId, int interval, int duration, int effectLevel) {
         super(interval);
         this.mobEffectId = mobEffectId;
         this.duration = duration;

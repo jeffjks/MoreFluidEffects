@@ -11,9 +11,9 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 public class Config {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
-    public static final ModConfigSpec.BooleanValue LOG_DIRT_BLOCK = BUILDER
-            .comment("Whether to log the dirt block on common setup")
-            .define("logDirtBlock", true);
+    public static final ModConfigSpec.BooleanValue ENABLE_DEFAULT_FLUID_EFFECT = BUILDER
+            .comment("For fluids in certain mods, the ‘More Fluid Effects’ mod defines its effects. Setting this option to False requires you to define effects directly in the config file for any fluid where you wish to apply custom effects.")
+            .define("useDefaultFluidEffect", true);
 
     public static final ModConfigSpec.IntValue MAGIC_NUMBER = BUILDER
             .comment("A magic number")
@@ -33,4 +33,8 @@ public class Config {
     private static boolean validateItemName(final Object obj) {
         return obj instanceof String itemName && BuiltInRegistries.ITEM.containsKey(ResourceLocation.parse(itemName));
     }
+
+
+
+
 }

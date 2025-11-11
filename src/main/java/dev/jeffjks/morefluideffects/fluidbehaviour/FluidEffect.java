@@ -3,9 +3,12 @@ package dev.jeffjks.morefluideffects.fluidbehaviour;
 import net.minecraft.world.entity.Entity;
 
 public abstract class FluidEffect implements IHasTickEffect {
+
+    public transient String type;
     protected final int interval;
 
     protected FluidEffect(int interval) {
+        this.type = getClass().getSimpleName();
         this.interval = Math.max(1, interval);
     }
 

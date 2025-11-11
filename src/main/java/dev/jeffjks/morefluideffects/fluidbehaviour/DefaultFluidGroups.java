@@ -1,5 +1,10 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import dev.jeffjks.morefluideffects.FluidEffectJsonData;
 import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import dev.jeffjks.morefluideffects.api.FluidTypeExt;
 import dev.jeffjks.morefluideffects.utils.FluidHelper;
@@ -18,14 +23,24 @@ public final class DefaultFluidGroups {
     private static final FluidEffect FREEZE_EFFECT_1 = new FluidFreezeEffect(1, 140);
     private static final FluidEffect FREEZE_EFFECT_2 = new FluidFreezeEffect(3, 240);
     private static final FluidEffect HEAT_EFFECT = new FluidHeatEffect(2F);
-    private static final FluidEffect POISON_EFFECT_1 = new FluidGenericEffect(25, "minecraft:poison", 60, 1);
-    private static final FluidEffect POISON_EFFECT_2 = new FluidGenericEffect(12, "minecraft:poison", 60, 2);
+    private static final FluidEffect POISON_EFFECT_1 = new FluidGenericEffect("minecraft:poison", 25, 60, 1);
+    private static final FluidEffect POISON_EFFECT_2 = new FluidGenericEffect("minecraft:poison", 12, 60, 2);
     private static final FluidEffect SUPER_HEAT_EFFECT = new FluidSuperHeatEffect(4F);
     private static final FluidEffect WATER_LIKE_EFFECT = new FluidWaterLikeEffect();
 
     private DefaultFluidGroups() {}
 
-    public static void registerFluidEffects() {
+    public static FluidEffectJsonData registerDefaultFluidEffects() {
+        FluidEffectJsonData cfg = new FluidEffectJsonData();
+
+        cfg.addFluidMapping(getFluidMapping("mekanism:hydrogen", true, true, List.of(
+                CRYOGENIC_EFFECT
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:oxygen", true, true, List.of(
+                CRYOGENIC_EFFECT
+        )));
+
+        /*
         mapFluidEffect("mekanism", "hydrogen", true, true, List.of(
                 CRYOGENIC_EFFECT
         ));
@@ -104,12 +119,55 @@ public final class DefaultFluidGroups {
 
         mapFluidEffect("supplementaries", "lumisene", false, false, List.of(
                 SUPER_HEAT_EFFECT
-        ));
+        ));*/
 
         setSuperHeatedFieldToLava();
+
+        return cfg;
     }
 
-    private static void mapFluidEffect(String namespace, String path, boolean canExtinguish, boolean vaporizesInUltraWarm,
+    private static FluidEffectJsonData.FluidMapping getFluidMapping(String id, boolean canExtinguish,
+                                                                    boolean vaporizesInUltraWarm, List<FluidEffect> effectList) {
+        FluidEffectJsonData.FluidMapping fm = new FluidEffectJsonData.FluidMapping();
+        fm.id = id;
+        fm.can_extinguish = canExtinguish;
+        fm.vaporizes_in_ultra_warm = vaporizesInUltraWarm;
+
+        for (var effect : effectList) {
+            var effectType = new FluidEffectJsonData.FluidEffectType(effect.type);
+
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+            JsonObject paramJson = gson.toJsonTree(effect).getAsJsonObject();
+            effectType.params = paramJson;
+
+            fm.effects.add(effectType);
+        }
+
+        var loc = ResourceLocation.bySeparator(id, ':');
+        FluidEffectsRegistry.register(loc, effectList);
+
+        return fm;
+    }
+
+
+
+    public static void mapFluidEffect(String effectId, boolean canExtinguish, boolean vaporizesInUltraWarm,
+                                       List<FluidEffect> effectList) {
+        var loc = ResourceLocation.bySeparator(effectId, ':');
+
+        var fluidType = FluidHelper.getFluidType(loc);
+        if (fluidType == null) {
+            MoreFluidEffects.LOGGER.info("No such fluid type: {}", loc);
+        }
+        else {
+            modifyFluidProperty(fluidType, canExtinguish, vaporizesInUltraWarm, effectList);
+        }
+
+        FluidEffectsRegistry.register(loc, effectList);
+    }
+
+    public static void mapFluidEffect(String namespace, String path, boolean canExtinguish, boolean vaporizesInUltraWarm,
                                        List<FluidEffect> effectList) {
         var loc = ResourceLocation.fromNamespaceAndPath(namespace, path);
 

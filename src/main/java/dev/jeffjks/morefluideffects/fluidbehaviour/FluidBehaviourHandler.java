@@ -1,5 +1,7 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
+import dev.jeffjks.morefluideffects.Config;
+import dev.jeffjks.morefluideffects.ConfigJsonApplier;
 import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -15,7 +17,10 @@ public class FluidBehaviourHandler {
 
     @SubscribeEvent
     public static void onServerAboutToStart(ServerAboutToStartEvent e) {
-        DefaultFluidGroups.registerFluidEffects();
+        if (Config.ENABLE_DEFAULT_FLUID_EFFECT.isTrue()) {
+            //DefaultFluidGroups.registerDefaultFluidEffects();
+            ConfigJsonApplier.loadConfig();
+        }
         FluidEffectsRegistry.rebuildMap(e.getServer().registryAccess());
     }
 
