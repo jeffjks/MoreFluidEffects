@@ -86,7 +86,9 @@ public final class DefaultFluidGroups {
         cfg.addFluidMapping(getFluidMapping("mekanism:heavy_water", true, true, List.of(
                 WATER_LIKE_EFFECT
         )));
-        cfg.addFluidMapping(getFluidMapping("mekanism:nutritional_paste", true, true));
+        cfg.addFluidMapping(getFluidMapping("mekanism:nutritional_paste", true, true, List.of(
+                WATER_LIKE_EFFECT
+        )));
         cfg.addFluidMapping(getFluidMapping("mekanismgenerators:bioethanol", false, true, List.of(
                 EXTEND_FIRE_EFFECT
         )));
@@ -113,6 +115,37 @@ public final class DefaultFluidGroups {
         // Supplementaries
         cfg.addFluidMapping(getFluidMapping("supplementaries:lumisene", false, false, List.of(
                 SUPER_HEAT_EFFECT
+        )));
+
+        // Ender IO
+        cfg.addFluidMapping(getFluidMapping("enderio:fluid_nutrient_distillation", true, true, List.of(
+                WATER_LIKE_EFFECT
+        )));
+        cfg.addFluidMapping(getFluidMapping("enderio:fluid_dew_of_the_void", true, false, List.of(
+                WATER_LIKE_EFFECT
+        )));
+        cfg.addFluidMapping(getFluidMapping("enderio:hootch", true, true, List.of(
+                WATER_LIKE_EFFECT,
+                EXTEND_FIRE_EFFECT
+        )));
+        cfg.addFluidMapping(getFluidMapping("enderio:rocket_fuel", false, true, List.of(
+                EXPLOSION_ON_FIRE_EFFECT
+        )));
+        cfg.addFluidMapping(getFluidMapping("enderio:fire_water", false, false, List.of(
+                SUPER_HEAT_EFFECT
+        )));
+        cfg.addFluidMapping(getFluidMapping("enderio:xp_juice", false, false));
+        cfg.addFluidMapping(getFluidMapping("enderio:liquid_sunshine", true, true, List.of(
+                WATER_LIKE_EFFECT
+        )));
+        cfg.addFluidMapping(getFluidMapping("enderio:liquid_darkness", true, false));
+        cfg.addFluidMapping(getFluidMapping("enderio:cloud_seed", true, true, List.of(
+                WATER_LIKE_EFFECT,
+                FREEZE_EFFECT_1
+        )));
+        cfg.addFluidMapping(getFluidMapping("enderio:cloud_seed_concentrated", true, true, List.of(
+                WATER_LIKE_EFFECT,
+                FREEZE_EFFECT_2
         )));
 
         setSuperHeatedFieldToLava();
