@@ -1,19 +1,17 @@
 package dev.jeffjks.morefluideffects;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class FluidEffectJsonData {
     public List<FluidMapping> fluidMappings = new ArrayList<>();
 
     public static class FluidMapping {
         public String id;
-        public boolean can_extinguish = true;
-        public boolean vaporizes_in_ultra_warm = true;
+        public boolean canExtinguish = true;
+        public boolean vaporizesInUltraWarm = true;
         public List<FluidEffectType> effects = new ArrayList<>();
     }
 

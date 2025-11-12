@@ -2,8 +2,6 @@ package dev.jeffjks.morefluideffects.fluidbehaviour;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import dev.jeffjks.morefluideffects.FluidEffectJsonData;
 import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import dev.jeffjks.morefluideffects.api.FluidTypeExt;
@@ -33,6 +31,7 @@ public final class DefaultFluidGroups {
     public static FluidEffectJsonData registerDefaultFluidEffects() {
         FluidEffectJsonData cfg = new FluidEffectJsonData();
 
+        // Mekanism
         cfg.addFluidMapping(getFluidMapping("mekanism:hydrogen", true, true, List.of(
                 CRYOGENIC_EFFECT
         )));
@@ -40,107 +39,108 @@ public final class DefaultFluidGroups {
                 CRYOGENIC_EFFECT
         )));
 
-        /*
-        mapFluidEffect("mekanism", "hydrogen", true, true, List.of(
-                CRYOGENIC_EFFECT
-        ));
-        mapFluidEffect("mekanism", "oxygen", true, true, List.of(
-                CRYOGENIC_EFFECT
-        ));
-        mapFluidEffect("mekanism", "chlorine", true, true, List.of(
+        cfg.addFluidMapping(getFluidMapping("mekanism:chlorine", true, true, List.of(
                 POISON_EFFECT_2,
                 FREEZE_EFFECT_2
-        ));
-        mapFluidEffect("mekanism", "sulfur_dioxide", true, true, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:sulfur_dioxide", true, true, List.of(
                 POISON_EFFECT_1
-        ));
-        mapFluidEffect("mekanism", "sulfur_trioxide", true, true, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:sulfur_trioxide", true, true, List.of(
                 ACID_EFFECT
-        ));
-        mapFluidEffect("mekanism", "sulfuric_acid", true, true, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:sulfuric_acid", true, true, List.of(
                 ACID_EFFECT
-        ));
-        mapFluidEffect("mekanism", "hydrogen_chloride", true, true, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:hydrogen_chloride", true, true, List.of(
                 ACID_EFFECT
-        ));
-        mapFluidEffect("mekanism", "hydrofluoric_acid", true, true, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:hydrofluoric_acid", true, true, List.of(
                 ACID_EFFECT
-        ));
-        mapFluidEffect("mekanism", "uranium_oxide", false, false, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:uranium_oxide", false, false, List.of(
                 SUPER_HEAT_EFFECT
-        ));
-        mapFluidEffect("mekanism", "uranium_hexafluoride", true, false, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:uranium_hexafluoride", true, false, List.of(
                 HEAT_EFFECT
-        ));
-        mapFluidEffect("mekanism", "ethene", false, true, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:ethene", false, true, List.of(
                 FREEZE_EFFECT_2,
                 EXPLOSION_ON_FIRE_EFFECT
-        ));
-        mapFluidEffect("mekanism", "sodium", true, false, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:sodium", true, false, List.of(
                 HEAT_EFFECT
-        ));
-        mapFluidEffect("mekanism", "superheated_sodium", false, false, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:superheated_sodium", false, false, List.of(
                 SUPER_HEAT_EFFECT
-        ));
-        mapFluidEffect("mekanism", "brine", true, true, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:brine", true, true, List.of(
                 WATER_LIKE_EFFECT
-        ));
-        mapFluidEffect("mekanism", "lithium", false, false, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:lithium", false, false, List.of(
                 SUPER_HEAT_EFFECT
-        ));
-        mapFluidEffect("mekanism", "steam", true, true, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:steam", true, true, List.of(
                 WATER_LIKE_EFFECT
-        ));
-        mapFluidEffect("mekanism", "heavy_water", true, true, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:heavy_water", true, true, List.of(
                 WATER_LIKE_EFFECT
-        ));
-        mapFluidEffect("mekanism", "nutritional_paste", true, true, null);
-        mapFluidEffect("mekanismgenerators", "bioethanol", false, true, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:nutritional_paste", true, true));
+        cfg.addFluidMapping(getFluidMapping("mekanismgenerators:bioethanol", false, true, List.of(
                 EXTEND_FIRE_EFFECT
-        ));
-        mapFluidEffect("mekanismgenerators", "deuterium", true, true, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanismgenerators:deuterium", true, true, List.of(
                 CRYOGENIC_EFFECT
-        ));
-        mapFluidEffect("mekanismgenerators", "fusion_fuel", true, true, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanismgenerators:fusion_fuel", true, true, List.of(
                 CRYOGENIC_EFFECT
-        ));
-        mapFluidEffect("mekanismgenerators", "tritium", true, true, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanismgenerators:tritium", true, true, List.of(
                 CRYOGENIC_EFFECT
-        ));
+        )));
 
-        mapFluidEffect("create", "honey", true, true, null);
-        mapFluidEffect("create", "chocolate", true, true, null);
-        mapFluidEffect("createadditions", "bioethanol", false, true, List.of(
+        // Create
+        cfg.addFluidMapping(getFluidMapping("create:honey", true, true));
+        cfg.addFluidMapping(getFluidMapping("create:chocolate", true, true));
+        cfg.addFluidMapping(getFluidMapping("createadditions:bioethanol", false, true, List.of(
                 EXTEND_FIRE_EFFECT
-        ));
-        mapFluidEffect("createadditions", "seed_oil", false, true, List.of(
+        )));
+        cfg.addFluidMapping(getFluidMapping("createadditions:seed_oil", false, true, List.of(
                 EXTEND_FIRE_EFFECT
-        ));
+        )));
 
-        mapFluidEffect("supplementaries", "lumisene", false, false, List.of(
+        // Supplementaries
+        cfg.addFluidMapping(getFluidMapping("supplementaries:lumisene", false, false, List.of(
                 SUPER_HEAT_EFFECT
-        ));*/
+        )));
 
         setSuperHeatedFieldToLava();
 
         return cfg;
     }
 
-    private static FluidEffectJsonData.FluidMapping getFluidMapping(String id, boolean canExtinguish,
-                                                                    boolean vaporizesInUltraWarm, List<FluidEffect> effectList) {
+    private static FluidEffectJsonData.FluidMapping getFluidMapping(String id, boolean canExtinguish, boolean isVaporize) {
         FluidEffectJsonData.FluidMapping fm = new FluidEffectJsonData.FluidMapping();
         fm.id = id;
-        fm.can_extinguish = canExtinguish;
-        fm.vaporizes_in_ultra_warm = vaporizesInUltraWarm;
+        fm.canExtinguish = canExtinguish;
+        fm.vaporizesInUltraWarm = isVaporize;
+
+        return fm;
+    }
+
+    private static FluidEffectJsonData.FluidMapping getFluidMapping(String id, boolean canExtinguish,
+                                                                    boolean isVaporize, List<FluidEffect> effectList) {
+        FluidEffectJsonData.FluidMapping fm = new FluidEffectJsonData.FluidMapping();
+        fm.id = id;
+        fm.canExtinguish = canExtinguish;
+        fm.vaporizesInUltraWarm = isVaporize;
 
         for (var effect : effectList) {
             var effectType = new FluidEffectJsonData.FluidEffectType(effect.type);
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-            JsonObject paramJson = gson.toJsonTree(effect).getAsJsonObject();
-            effectType.params = paramJson;
-
+            effectType.params = gson.toJsonTree(effect).getAsJsonObject();
             fm.effects.add(effectType);
         }
 
@@ -155,21 +155,6 @@ public final class DefaultFluidGroups {
     public static void mapFluidEffect(String effectId, boolean canExtinguish, boolean vaporizesInUltraWarm,
                                        List<FluidEffect> effectList) {
         var loc = ResourceLocation.bySeparator(effectId, ':');
-
-        var fluidType = FluidHelper.getFluidType(loc);
-        if (fluidType == null) {
-            MoreFluidEffects.LOGGER.info("No such fluid type: {}", loc);
-        }
-        else {
-            modifyFluidProperty(fluidType, canExtinguish, vaporizesInUltraWarm, effectList);
-        }
-
-        FluidEffectsRegistry.register(loc, effectList);
-    }
-
-    public static void mapFluidEffect(String namespace, String path, boolean canExtinguish, boolean vaporizesInUltraWarm,
-                                       List<FluidEffect> effectList) {
-        var loc = ResourceLocation.fromNamespaceAndPath(namespace, path);
 
         var fluidType = FluidHelper.getFluidType(loc);
         if (fluidType == null) {

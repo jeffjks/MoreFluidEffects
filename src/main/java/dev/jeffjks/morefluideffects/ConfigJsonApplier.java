@@ -1,15 +1,9 @@
 package dev.jeffjks.morefluideffects;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import dev.jeffjks.morefluideffects.fluidbehaviour.DefaultFluidGroups;
 import dev.jeffjks.morefluideffects.fluidbehaviour.FluidEffect;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +25,8 @@ public class ConfigJsonApplier {
 
     private static void applyConfig(FluidEffectJsonData cfg) {
         for (FluidEffectJsonData.FluidMapping fm : cfg.fluidMappings) {
-            boolean canExtinguish = fm.can_extinguish;
-            boolean isVaporize = fm.vaporizes_in_ultra_warm;
+            boolean canExtinguish = fm.canExtinguish;
+            boolean isVaporize = fm.vaporizesInUltraWarm;
             List<FluidEffect> effects = new ArrayList<>();
 
             for (FluidEffectJsonData.FluidEffectType spec : fm.effects) {
@@ -45,25 +39,6 @@ public class ConfigJsonApplier {
             }
 
             DefaultFluidGroups.mapFluidEffect(fm.id, canExtinguish, isVaporize, effects);
-        }
-    }
-
-    private static void setDefaultJson(File jsonFile, FluidEffectJsonData jsonData) {
-        try {
-            jsonFile.createNewFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        Gson gson = new GsonBuilder()
-                .setPrettyPrinting()
-                .disableHtmlEscaping()
-                .create();
-
-        try (Writer writer = new FileWriter(jsonFile, StandardCharsets.UTF_8)) {
-            gson.toJson(jsonData, writer);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 }

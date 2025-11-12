@@ -5,8 +5,6 @@ import net.minecraft.world.entity.LivingEntity;
 
 public class FluidWaterLikeEffect extends FluidEffect {
 
-    private final float waterDamage = 1F;
-
     public FluidWaterLikeEffect() {
         super(1);
     }
@@ -15,6 +13,7 @@ public class FluidWaterLikeEffect extends FluidEffect {
     protected void apply(Entity entity) {
         if (entity instanceof LivingEntity living) {
             if (living.isSensitiveToWater()) {
+                float waterDamage = 1F;
                 living.hurt(living.damageSources().drown(), waterDamage);
             }
         }

@@ -14,34 +14,58 @@ public final class FluidEffectFactories {
     private static final Map<String, Function<JsonObject, FluidEffect>> REGISTRY = new HashMap<>();
 
     static {
-        register("FluidAcidEffect", json -> {
-            float dmg = getFloat(json, "damage", 2.0f);
-            return new FluidAcidEffect(dmg);
+        registerFluidEffectType(FluidAcidEffect.class.getSimpleName(), json -> {
+            float damage = getFloat(json, "damage", 2.0f);
+            return new FluidAcidEffect(damage);
         });
 
-        register("FluidCryogenicEffect", json -> {
-            float freeze_damage = getFloat(json, "freeze_damage", 2.0f);
-            int frozen_tick = getInt(json, "frozen_tick", 6);
-            int max_frozen_tick = getInt(json, "max_frozen_tick", 360);
-            return new FluidCryogenicEffect(freeze_damage, frozen_tick, max_frozen_tick);
+        registerFluidEffectType(FluidCryogenicEffect.class.getSimpleName(), json -> {
+            float freezeDamage = getFloat(json, "freezeDamage", 2.0f);
+            int frozenTicks = getInt(json, "frozenTicks", 6);
+            int maxFrozenTicks = getInt(json, "maxFrozenTicks", 360);
+            return new FluidCryogenicEffect(freezeDamage, frozenTicks, maxFrozenTicks);
         });
 
-        register("FluidGenericEffect", json -> {
-            String effectId = getString(json, "effect_id", "");
+        registerFluidEffectType(FluidExplosionOnFireEffect.class.getSimpleName(), json -> {
+            int explosionRadius = getInt(json, "explosionRadius", 3);
+            return new FluidExplosionOnFireEffect(explosionRadius);
+        });
+
+        registerFluidEffectType(FluidExtendFireEffect.class.getSimpleName(), json -> {
+            int fireTicks = getInt(json, "fireTicks", 300);
+            return new FluidExtendFireEffect(fireTicks);
+        });
+
+        registerFluidEffectType(FluidFreezeEffect.class.getSimpleName(), json -> {
+            int frozenTicks = getInt(json, "frozenTicks", 3);
+            int maxFrozenTicks = getInt(json, "maxFrozenTicks", 240);
+            return new FluidFreezeEffect(frozenTicks, maxFrozenTicks);
+        });
+
+        registerFluidEffectType(FluidGenericEffect.class.getSimpleName(), json -> {
+            String mobEffectId = getString(json, "mobEffectId", "");
             int interval = getInt(json, "interval", 12);
             int duration = getInt(json, "duration", 60);
-            int effect_level = getInt(json, "effect_level", 2);
-            return new FluidGenericEffect(effectId, interval, duration, effect_level);
+            int effectLevel = getInt(json, "effectLevel", 2);
+            return new FluidGenericEffect(mobEffectId, interval, duration, effectLevel);
         });
 
-        register("FluidFreezeEffect", json -> {
-            int frozen_tick = getInt(json, "frozen_tick", 3);
-            int max_frozen_tick = getInt(json, "max_frozen_tick", 240);
-            return new FluidFreezeEffect(frozen_tick, max_frozen_tick);
+        registerFluidEffectType(FluidHeatEffect.class.getSimpleName(), json -> {
+            float damage = getFloat(json, "damage", 2.0f);
+            return new FluidHeatEffect(damage);
+        });
+
+        registerFluidEffectType(FluidSuperHeatEffect.class.getSimpleName(), json -> {
+            float damage = getFloat(json, "damage", 4.0f);
+            return new FluidSuperHeatEffect(damage);
+        });
+
+        registerFluidEffectType(FluidWaterLikeEffect.class.getSimpleName(), json -> {
+            return new FluidWaterLikeEffect();
         });
     }
 
-    public static void register(String type, Function<JsonObject, FluidEffect> factory) {
+    public static void registerFluidEffectType(String type, Function<JsonObject, FluidEffect> factory) {
         REGISTRY.put(type, factory);
     }
 

@@ -6,21 +6,21 @@ import net.minecraft.world.entity.LivingEntity;
 public class FluidCryogenicEffect extends FluidEffect {
 
     private final float freezeDamage;
-    private final int frozenTick;
-    private final int maxFrozenTick;
+    private final int frozenTicks;
+    private final int maxFrozenTicks;
 
-    public FluidCryogenicEffect(float freezeDamage, int frozenTick, int maxFrozenTick) {
+    public FluidCryogenicEffect(float freezeDamage, int frozenTicks, int maxFrozenTicks) {
         super(1);
         this.freezeDamage = freezeDamage;
-        this.frozenTick = frozenTick;
-        this.maxFrozenTick = maxFrozenTick;
+        this.frozenTicks = frozenTicks;
+        this.maxFrozenTicks = maxFrozenTicks;
     }
 
     @Override
     protected void apply(Entity entity) {
         if (entity instanceof LivingEntity living) {
             living.hurt(living.damageSources().freeze(), freezeDamage);
-            living.setTicksFrozen(Math.min(living.getTicksFrozen() + frozenTick + 2, maxFrozenTick)); // -2 every tick in vanilla
+            living.setTicksFrozen(Math.min(living.getTicksFrozen() + frozenTicks + 2, maxFrozenTicks)); // -2 every tick in vanilla
         }
     }
 }

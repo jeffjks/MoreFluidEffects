@@ -3,6 +3,7 @@ package dev.jeffjks.morefluideffects;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dev.jeffjks.morefluideffects.fluidbehaviour.DefaultFluidGroups;
+import dev.jeffjks.morefluideffects.fluidbehaviour.FluidEffectsRegistry;
 
 import java.io.File;
 import java.io.FileReader;
@@ -25,15 +26,16 @@ public class ConfigJsonManager<T> {
     }
 
     public T loadOrCreate(T defaultConfig) {
-          if (!file.exists()) {
+        if (!file.exists()) {
             save(defaultConfig);
             return defaultConfig;
         }
 
         try (FileReader reader = new FileReader(file)) {
+            FluidEffectsRegistry.reset();
             return gson.fromJson(reader, configClass);
         } catch (Exception e) {
-            e.printStackTrace();
+            MoreFluidEffects.LOGGER.error(e.getMessage());
             save(defaultConfig);
             return defaultConfig;
         }
@@ -43,7 +45,7 @@ public class ConfigJsonManager<T> {
         try (FileWriter writer = new FileWriter(file)) {
             gson.toJson(config, writer);
         } catch (IOException e) {
-            e.printStackTrace();
+            MoreFluidEffects.LOGGER.error(e.getMessage());
         }
     }
 }

@@ -1,5 +1,6 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
+import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -17,12 +18,19 @@ public final class FluidEffectsRegistry {
 
     // --- 등록 API ---
     public static void register(ResourceLocation fluidId, List<FluidEffect> effects) {
-        if (effects == null || effects.size() == 0)
+        if (effects == null || effects.isEmpty())
             return;
+        if (effects.getFirst() == null) {
+            MoreFluidEffects.LOGGER.error("Error has occurred while register fluid effect: {}", fluidId);
+            return;
+        }
         FLUID_IDS_MAP.computeIfAbsent(fluidId, k -> new ArrayList<>()).addAll(effects);
     }
     public static void register(ResourceLocation fluidId, FluidEffect effects) {
         register(fluidId, Arrays.asList(effects));
+    }
+    public static void reset() {
+        FLUID_IDS_MAP.clear();
     }
 
     // --- 리빌드: ID/Tag -> FluidType 매핑 만들어 캐시 ---

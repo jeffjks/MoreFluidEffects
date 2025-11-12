@@ -6,7 +6,6 @@ import net.minecraft.world.entity.Entity;
 
 public class FluidSuperHeatEffect extends FluidEffect {
 
-    private final float igniteSeconds = 15F;
     private final float damage;
 
     public FluidSuperHeatEffect(float damage) {
@@ -17,6 +16,7 @@ public class FluidSuperHeatEffect extends FluidEffect {
     @Override
     protected void apply(Entity entity) {
         if (!entity.fireImmune()) {
+            float igniteSeconds = 15F;
             entity.igniteForSeconds(igniteSeconds);
             if (entity.hurt(ModDamageTypes.of(entity.level(), ModDamageTypes.HEAT), damage)) {
                 entity.playSound(SoundEvents.GENERIC_BURN, 0.4F, 2.0F + entity.getRandom().nextFloat() * 0.4F);
