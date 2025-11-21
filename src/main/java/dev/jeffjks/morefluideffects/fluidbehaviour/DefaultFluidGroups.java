@@ -112,11 +112,6 @@ public final class DefaultFluidGroups {
                 EXTEND_FIRE_EFFECT
         )));
 
-        // Supplementaries
-        cfg.addFluidMapping(getFluidMapping("supplementaries:lumisene", false, false, List.of(
-                SUPER_HEAT_EFFECT
-        )));
-
         // Ender IO
         cfg.addFluidMapping(getFluidMapping("enderio:fluid_nutrient_distillation", true, true, List.of(
                 WATER_LIKE_EFFECT
