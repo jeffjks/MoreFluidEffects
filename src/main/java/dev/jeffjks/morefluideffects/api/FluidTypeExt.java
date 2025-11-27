@@ -11,4 +11,5 @@ public interface FluidTypeExt {
     void mfx$setVaporizesInUltraWarm(boolean v);
 
     void mfx$locked();
+    void mfx$resetFluidFlags();
 }

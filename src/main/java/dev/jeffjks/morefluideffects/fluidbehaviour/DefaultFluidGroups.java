@@ -186,7 +186,7 @@ public final class DefaultFluidGroups {
 
         var fluidType = FluidHelper.getFluidType(loc);
         if (fluidType == null) {
-            MoreFluidEffects.LOGGER.info("No such fluid type: {}", loc);
+            MoreFluidEffects.LOGGER.error("No such fluid type: {}", loc);
         }
         else {
             modifyFluidProperty(fluidType, canExtinguish, vaporizesInUltraWarm, effectList);
@@ -197,6 +197,8 @@ public final class DefaultFluidGroups {
 
     private static void modifyFluidProperty(FluidType fluidType, boolean canExtinguish, boolean vaporizesInUltraWarm,
                                             List<FluidEffect> effectList) {
+        ((FluidTypeExt) fluidType).mfx$resetFluidFlags();
+
         ((FluidTypeExt) fluidType).mfx$setCanExtinguish(canExtinguish);
         ((FluidTypeExt) fluidType).mfx$setVaporizesInUltraWarm(vaporizesInUltraWarm);
 

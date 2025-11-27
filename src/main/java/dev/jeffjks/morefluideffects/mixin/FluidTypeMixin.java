@@ -51,6 +51,13 @@ public abstract class FluidTypeMixin implements FluidTypeExt {
     @Override
     public void mfx$locked() { mfx$locked = true; }
 
+    @Override
+    public void mfx$resetFluidFlags() {
+        mfx$locked = false;
+        mfx$vaporizesInUltraWarm = false;
+        mfx$superHeated = false;
+    }
+
 
     // VaporizeOnPlacement return true if sVaporizesInUltraWarm == true
     @ModifyReturnValue(
