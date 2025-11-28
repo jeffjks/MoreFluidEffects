@@ -6,6 +6,7 @@ import dev.jeffjks.morefluideffects.FluidEffectJsonData;
 import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import dev.jeffjks.morefluideffects.api.FluidTypeExt;
 import dev.jeffjks.morefluideffects.utils.FluidHelper;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.fluids.FluidType;
@@ -113,32 +114,32 @@ public final class DefaultFluidGroups {
         )));
 
         // Ender IO
-        cfg.addFluidMapping(getFluidMapping("enderio:fluid_nutrient_distillation", true, true, List.of(
+        cfg.addFluidMapping(getFluidMapping("enderio:fluid_nutrient_distillation_still", true, true, List.of(
                 WATER_LIKE_EFFECT
         )));
-        cfg.addFluidMapping(getFluidMapping("enderio:fluid_dew_of_the_void", true, false, List.of(
+        cfg.addFluidMapping(getFluidMapping("enderio:fluid_dew_of_the_void_still", true, false, List.of(
                 WATER_LIKE_EFFECT
         )));
-        cfg.addFluidMapping(getFluidMapping("enderio:hootch", true, true, List.of(
+        cfg.addFluidMapping(getFluidMapping("enderio:fluid_hootch_still", true, true, List.of(
                 WATER_LIKE_EFFECT,
                 EXTEND_FIRE_EFFECT
         )));
-        cfg.addFluidMapping(getFluidMapping("enderio:rocket_fuel", false, true, List.of(
+        cfg.addFluidMapping(getFluidMapping("enderio:fluid_rocket_fuel_still", false, true, List.of(
                 EXPLOSION_ON_FIRE_EFFECT
         )));
-        cfg.addFluidMapping(getFluidMapping("enderio:fire_water", false, false, List.of(
+        cfg.addFluidMapping(getFluidMapping("enderio:fluid_fire_water_still", false, false, List.of(
                 SUPER_HEAT_EFFECT
         )));
-        cfg.addFluidMapping(getFluidMapping("enderio:xp_juice", false, false));
-        cfg.addFluidMapping(getFluidMapping("enderio:liquid_sunshine", true, true, List.of(
+        cfg.addFluidMapping(getFluidMapping("enderio:fluid_xp_juice_still", false, false));
+        cfg.addFluidMapping(getFluidMapping("enderio:fluid_liquid_sunshine_still", true, true, List.of(
                 WATER_LIKE_EFFECT
         )));
-        cfg.addFluidMapping(getFluidMapping("enderio:liquid_darkness", true, false));
-        cfg.addFluidMapping(getFluidMapping("enderio:cloud_seed", true, true, List.of(
+        cfg.addFluidMapping(getFluidMapping("enderio:fluid_liquid_darkness_still", true, false));
+        cfg.addFluidMapping(getFluidMapping("enderio:fluid_cloud_seed_still", true, true, List.of(
                 WATER_LIKE_EFFECT,
                 FREEZE_EFFECT_1
         )));
-        cfg.addFluidMapping(getFluidMapping("enderio:cloud_seed_concentrated", true, true, List.of(
+        cfg.addFluidMapping(getFluidMapping("enderio:fluid_cloud_seed_concentrated_still", true, true, List.of(
                 WATER_LIKE_EFFECT,
                 FREEZE_EFFECT_2
         )));
@@ -182,10 +183,10 @@ public final class DefaultFluidGroups {
 
     public static void mapFluidEffect(String effectId, boolean canExtinguish, boolean vaporizesInUltraWarm,
                                        List<FluidEffect> effectList) {
-        var loc = ResourceLocation.bySeparator(effectId, ':');
+        ResourceLocation loc = ResourceLocation.bySeparator(effectId, ':');
 
-        var fluidType = FluidHelper.getFluidType(loc);
-        if (fluidType == null) {
+        var fluidType = BuiltInRegistries.FLUID.get(loc).getFluidType();
+        if (fluidType.isAir()) {
             MoreFluidEffects.LOGGER.error("No such fluid type: {}", loc);
         }
         else {
