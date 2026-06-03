@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder;
 import dev.jeffjks.morefluideffects.FluidEffectJsonData;
 import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import dev.jeffjks.morefluideffects.api.FluidTypeExt;
-import dev.jeffjks.morefluideffects.utils.FluidHelper;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.NeoForgeMod;
@@ -187,7 +186,7 @@ public final class DefaultFluidGroups {
 
         var fluidType = BuiltInRegistries.FLUID.get(loc).getFluidType();
         if (fluidType.isAir()) {
-            MoreFluidEffects.LOGGER.error("No such fluid type: {}", loc);
+            MoreFluidEffects.LOGGER.warn("No such fluid type: {}", loc);
         }
         else {
             modifyFluidProperty(fluidType, canExtinguish, vaporizesInUltraWarm, effectList);
