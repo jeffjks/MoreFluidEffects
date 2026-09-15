@@ -27,7 +27,6 @@ public class FluidFreezeEffect extends FluidEffect {
         JsonObject obj = new JsonObject();
         obj.addProperty("frozenTicks", frozenTicks);
         obj.addProperty("maxFrozenTicks", maxFrozenTicks);
-        obj.addProperty("interval", interval);
         return obj;
     }
 }

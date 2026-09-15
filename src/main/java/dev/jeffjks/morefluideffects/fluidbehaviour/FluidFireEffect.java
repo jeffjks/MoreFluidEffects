@@ -52,11 +52,8 @@ public class FluidFireEffect extends FluidEffect {
         JsonObject obj = new JsonObject();
 
         String modeName = mode.name().toLowerCase();
-        modeName = Character.toUpperCase(modeName.charAt(0)) + modeName.substring(1);
-
         obj.addProperty("mode", modeName);
         obj.addProperty("ticks", ticks);
-        obj.addProperty("interval", interval);
         return obj;
     }
 }

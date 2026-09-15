@@ -30,7 +30,6 @@ public class FluidExplosionOnFireEffect extends FluidEffect {
     public JsonObject toJson() {
         JsonObject obj = new JsonObject();
         obj.addProperty("explosionRadius", explosionRadius);
-        obj.addProperty("interval", interval);
         return obj;
     }
 }

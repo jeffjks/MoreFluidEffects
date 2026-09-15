@@ -13,7 +13,7 @@ public class FluidStatusEffect extends FluidEffect {
     private final int duration;
     private final int effectLevel;
 
-    public FluidStatusEffect(String mobEffectId, int interval, int duration, int effectLevel) {
+    public FluidStatusEffect(String mobEffectId, int duration, int effectLevel, int interval) {
         super(interval);
         this.mobEffectId = mobEffectId;
         this.duration = duration;

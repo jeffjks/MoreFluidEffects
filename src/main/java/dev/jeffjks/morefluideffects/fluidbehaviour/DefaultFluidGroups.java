@@ -1,7 +1,5 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import dev.jeffjks.morefluideffects.FluidEffectJsonData;
 import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import dev.jeffjks.morefluideffects.api.FluidTypeExt;
@@ -23,11 +21,11 @@ public final class DefaultFluidGroups {
 
         // Mekanism
         cfg.addFluidMapping(getFluidMapping("mekanism:hydrogen", true, true, List.of(
-                new FluidDamageEffect(ModDamageTypes.CRYOGENIC, 2f),
+                new FluidDamageEffect(ModDamageTypes.CRYOGENIC, 2f, false),
                 new FluidFreezeEffect(6, 360)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:oxygen", true, true, List.of(
-                new FluidDamageEffect(ModDamageTypes.CRYOGENIC, 2f),
+                new FluidDamageEffect(ModDamageTypes.CRYOGENIC, 2f, false),
                 new FluidFreezeEffect(6, 360)
         )));
 
@@ -39,42 +37,42 @@ public final class DefaultFluidGroups {
                 new FluidStatusEffect("minecraft:poison", 25, 60, 1)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:sulfur_trioxide", true, true, List.of(
-                new FluidDamageEffect(ModDamageTypes.ACID, 2f)
+                new FluidDamageEffect(ModDamageTypes.ACID, 2f, false)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:sulfuric_acid", true, true, List.of(
-                new FluidDamageEffect(ModDamageTypes.ACID, 2f)
+                new FluidDamageEffect(ModDamageTypes.ACID, 2f, false)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:hydrogen_chloride", true, true, List.of(
-                new FluidDamageEffect(ModDamageTypes.ACID, 2f)
+                new FluidDamageEffect(ModDamageTypes.ACID, 2f, false)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:hydrofluoric_acid", true, true, List.of(
-                new FluidDamageEffect(ModDamageTypes.ACID, 2f),
+                new FluidDamageEffect(ModDamageTypes.ACID, 2f, false),
                 new FluidStatusEffect("minecraft:poison", 12, 1200, 3),
                 new FluidStatusEffect("minecraft:weakness", 12, 1200, 2)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:uranium_oxide", false, false, List.of(
-                new FluidDamageEffect(ModDamageTypes.HEAT, 8f),
+                new FluidDamageEffect(ModDamageTypes.HEAT, 8f, true),
                 FluidFireEffect.ignite(300)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:uranium_hexafluoride", true, false, List.of(
-                new FluidDamageEffect(ModDamageTypes.HEAT, 2f)
+                new FluidDamageEffect(ModDamageTypes.HEAT, 2f, false)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:ethene", false, true, List.of(
                 new FluidFreezeEffect(3, 240),
                 new FluidExplosionOnFireEffect(4F)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:sodium", true, false, List.of(
-                new FluidDamageEffect(ModDamageTypes.HEAT, 2f)
+                new FluidDamageEffect(ModDamageTypes.HEAT, 2f, false)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:superheated_sodium", false, false, List.of(
-                new FluidDamageEffect(ModDamageTypes.HEAT, 8f),
+                new FluidDamageEffect(ModDamageTypes.HEAT, 8f, true),
                 FluidFireEffect.ignite(300)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:brine", true, true, List.of(
                 WATER_LIKE_EFFECT
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:lithium", false, false, List.of(
-                new FluidDamageEffect(ModDamageTypes.HEAT, 2f)
+                new FluidDamageEffect(ModDamageTypes.HEAT, 2f, false)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:steam", true, true, List.of(
                 WATER_LIKE_EFFECT
@@ -89,15 +87,15 @@ public final class DefaultFluidGroups {
                 FluidFireEffect.extend(300)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanismgenerators:deuterium", true, true, List.of(
-                new FluidDamageEffect(ModDamageTypes.CRYOGENIC, 2f),
+                new FluidDamageEffect(ModDamageTypes.CRYOGENIC, 2f, false),
                 new FluidFreezeEffect(6, 360)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanismgenerators:fusion_fuel", true, true, List.of(
-                new FluidDamageEffect(ModDamageTypes.CRYOGENIC, 2f),
+                new FluidDamageEffect(ModDamageTypes.CRYOGENIC, 2f, false),
                 new FluidFreezeEffect(6, 360)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanismgenerators:tritium", true, true, List.of(
-                new FluidDamageEffect(ModDamageTypes.CRYOGENIC, 2f),
+                new FluidDamageEffect(ModDamageTypes.CRYOGENIC, 2f, false),
                 new FluidFreezeEffect(6, 360)
         )));
 
@@ -126,7 +124,7 @@ public final class DefaultFluidGroups {
                 new FluidExplosionOnFireEffect(4F)
         )));
         cfg.addFluidMapping(getFluidMapping("enderio:fluid_fire_water_still", false, false, List.of(
-                new FluidDamageEffect(ModDamageTypes.HEAT, 4f),
+                new FluidDamageEffect(ModDamageTypes.HEAT, 4f, true),
                 FluidFireEffect.ignite(300)
         )));
         cfg.addFluidMapping(getFluidMapping("enderio:fluid_xp_juice_still", false, false));

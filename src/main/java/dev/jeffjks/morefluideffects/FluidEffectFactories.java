@@ -38,17 +38,19 @@ public final class FluidEffectFactories {
 
         registerFluidEffectType(FluidStatusEffect.class.getSimpleName(), json -> {
             String mobEffectId = getString(json, "mobEffectId", "");
-            int interval = getInt(json, "interval", 12);
             int duration = getInt(json, "duration", 60);
             int effectLevel = getInt(json, "effectLevel", 2);
-            return new FluidStatusEffect(mobEffectId, interval, duration, effectLevel);
+            int interval = getInt(json, "interval", 12);
+            return new FluidStatusEffect(mobEffectId, duration, effectLevel, interval);
         });
 
         registerFluidEffectType(FluidDamageEffect.class.getSimpleName(), json -> {
             String damageTypeId = getString(json, "damageType", "minecraft:generic");
             float damage = getFloat(json, "damage", 2.0f);
+            boolean damagesItems = getBoolean(json, "damagesItems", true);
             ResourceKey<DamageType> key = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.parse(damageTypeId));
-            return new FluidDamageEffect(key, damage);
+            int interval = getInt(json, "interval", 1);
+            return new FluidDamageEffect(key, damage, damagesItems, interval);
         });
 
         registerFluidEffectType(FluidWaterLikeEffect.class.getSimpleName(), json -> {
@@ -67,6 +69,10 @@ public final class FluidEffectFactories {
             return null;
         }
         return fn.apply(params == null ? new JsonObject() : params);
+    }
+
+    private static boolean getBoolean(JsonObject obj, String key, boolean def) {
+        return obj.has(key) ? obj.get(key).getAsBoolean() : def;
     }
 
     private static float getFloat(JsonObject obj, String key, float def) {
