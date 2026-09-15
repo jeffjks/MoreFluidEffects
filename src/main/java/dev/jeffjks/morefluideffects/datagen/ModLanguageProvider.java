@@ -39,12 +39,14 @@ public class ModLanguageProvider extends LanguageProvider {
     // ko_kr
     protected void addKoreaTranslations() {
         add(ModDamageTypes.ACID, "%1$s이(가) 산성 물질에 빠졌습니다.", "%1$s이(가) %2$s로부터 도망치려다가 산성 물질에 빠졌습니다.");
+        add(ModDamageTypes.CRYOGENIC, "%1$s이(가) 극저온 물질에 빠졌습니다.", "%1$s이(가) %2$s로부터 도망치려다가 극저온 물질에 빠졌습니다.");
         add(ModDamageTypes.HEAT, "%1$s이(가) 고온 물질에 빠졌습니다.", "%1$s이(가) %2$s로부터 도망치려다가 고온 물질에 빠졌습니다.");
     }
 
     // en_us
     protected void addEnglishTranslations() {
         add(ModDamageTypes.ACID, "%1$s tried to swim in acid.", "%1$s tried to swim in acid to escape %2$s.");
+        add(ModDamageTypes.CRYOGENIC, "%1$s tried to swim in extremely low temperature material.", "%1$s tried to swim in extremely low temperature material to escape %2$s.");
         add(ModDamageTypes.HEAT, "%1$s tried to swim in high temperature material.", "%1$s tried to swim in high temperature material to escape %2$s.");
     }
 
