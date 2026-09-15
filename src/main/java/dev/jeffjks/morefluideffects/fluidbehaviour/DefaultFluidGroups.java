@@ -45,16 +45,16 @@ public final class DefaultFluidGroups {
                 new FluidDamageEffect(ModDamageTypes.ACID, 2f)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:hydrogen_chloride", true, true, List.of(
+                new FluidDamageEffect(ModDamageTypes.ACID, 2f)
+        )));
+        cfg.addFluidMapping(getFluidMapping("mekanism:hydrofluoric_acid", true, true, List.of(
                 new FluidDamageEffect(ModDamageTypes.ACID, 2f),
                 new FluidStatusEffect("minecraft:poison", 12, 1200, 3),
                 new FluidStatusEffect("minecraft:weakness", 12, 1200, 2)
         )));
-        cfg.addFluidMapping(getFluidMapping("mekanism:hydrofluoric_acid", true, true, List.of(
-                new FluidDamageEffect(ModDamageTypes.ACID, 2f)
-        )));
         cfg.addFluidMapping(getFluidMapping("mekanism:uranium_oxide", false, false, List.of(
                 new FluidDamageEffect(ModDamageTypes.HEAT, 8f),
-                FluidFireEffect.ignite(15F)
+                FluidFireEffect.ignite(300)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:uranium_hexafluoride", true, false, List.of(
                 new FluidDamageEffect(ModDamageTypes.HEAT, 2f)
@@ -68,7 +68,7 @@ public final class DefaultFluidGroups {
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:superheated_sodium", false, false, List.of(
                 new FluidDamageEffect(ModDamageTypes.HEAT, 8f),
-                FluidFireEffect.ignite(15F)
+                FluidFireEffect.ignite(300)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:brine", true, true, List.of(
                 WATER_LIKE_EFFECT
@@ -127,7 +127,7 @@ public final class DefaultFluidGroups {
         )));
         cfg.addFluidMapping(getFluidMapping("enderio:fluid_fire_water_still", false, false, List.of(
                 new FluidDamageEffect(ModDamageTypes.HEAT, 4f),
-                FluidFireEffect.ignite(15F)
+                FluidFireEffect.ignite(300)
         )));
         cfg.addFluidMapping(getFluidMapping("enderio:fluid_xp_juice_still", false, false));
         cfg.addFluidMapping(getFluidMapping("enderio:fluid_liquid_sunshine_still", true, true, List.of(

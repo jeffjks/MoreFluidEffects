@@ -23,6 +23,13 @@ public final class FluidEffectFactories {
             return new FluidExplosionOnFireEffect(explosionRadius);
         });
 
+        registerFluidEffectType(FluidFireEffect.class.getSimpleName(), json -> {
+            String modeStr = getString(json, "mode", "extinguish");
+            FluidFireEffect.FireMode mode = FluidFireEffect.FireMode.valueOf(modeStr.toUpperCase());
+            int ticks = getInt(json, "ticks", 0);
+            return new FluidFireEffect(mode, ticks);
+        });
+
         registerFluidEffectType(FluidFreezeEffect.class.getSimpleName(), json -> {
             int frozenTicks = getInt(json, "frozenTicks", 3);
             int maxFrozenTicks = getInt(json, "maxFrozenTicks", 240);

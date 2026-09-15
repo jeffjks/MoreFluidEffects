@@ -17,8 +17,7 @@ public class FluidBehaviourHandler {
 
     @SubscribeEvent
     public static void onServerAboutToStart(ServerAboutToStartEvent e) {
-        if (Config.ENABLE_DEFAULT_FLUID_EFFECT.isTrue()) {
-            //DefaultFluidGroups.registerDefaultFluidEffects();
+        if (Config.ENABLE_FLUID_EFFECTS.get()) {
             ConfigJsonApplier.loadConfig();
         }
         FluidEffectsRegistry.rebuildMap(e.getServer().registryAccess());

@@ -22,6 +22,7 @@ public class ConfigJsonManager<T> {
         this.gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .disableHtmlEscaping()
+                .registerTypeAdapter(FluidEffectJsonData.FluidEffectType.class, new FluidEffectTypeAdapter())
                 .create();
     }
 

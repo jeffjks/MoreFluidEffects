@@ -11,30 +11,11 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 public class Config {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
-    public static final ModConfigSpec.BooleanValue ENABLE_DEFAULT_FLUID_EFFECT = BUILDER
-            .comment("For fluids in certain mods, the ‘More Fluid Effects’ mod defines its effects. Setting this option to False requires you to define effects directly in the config file for any fluid where you wish to apply custom effects.")
-            .define("useDefaultFluidEffect", true);
-
-    public static final ModConfigSpec.IntValue MAGIC_NUMBER = BUILDER
-            .comment("A magic number")
-            .defineInRange("magicNumber", 42, 0, Integer.MAX_VALUE);
-
-    public static final ModConfigSpec.ConfigValue<String> MAGIC_NUMBER_INTRODUCTION = BUILDER
-            .comment("What you want the introduction message to be for the magic number")
-            .define("magicNumberIntroduction", "The magic number is... ");
-
-    // a list of strings that are treated as resource locations for items
-    public static final ModConfigSpec.ConfigValue<List<? extends String>> ITEM_STRINGS = BUILDER
-            .comment("A list of items to log on common setup.")
-            .defineListAllowEmpty("items", List.of("minecraft:iron_ingot"), () -> "", Config::validateItemName);
+    public static final ModConfigSpec.BooleanValue ENABLE_FLUID_EFFECTS = BUILDER
+            .comment("Master switch for this mod's fluid effects. If set to false, the mod's fluid effect " +
+                    "definitions in the config file will not be applied, and no fluids will be affected by " +
+                    "this mod at all, regardless of what the config file contains.")
+            .define("enableFluidEffects", true);
 
     static final ModConfigSpec SPEC = BUILDER.build();
-
-    private static boolean validateItemName(final Object obj) {
-        return obj instanceof String itemName && BuiltInRegistries.ITEM.containsKey(ResourceLocation.parse(itemName));
-    }
-
-
-
-
 }

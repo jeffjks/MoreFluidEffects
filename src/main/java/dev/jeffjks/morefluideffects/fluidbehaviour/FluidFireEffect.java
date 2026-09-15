@@ -8,12 +8,12 @@ public class FluidFireEffect extends FluidEffect {
     public enum FireMode { EXTINGUISH, EXTEND, IGNITE }
 
     private final FireMode mode;
-    private final float value; // EXTINGUISH: 안 씀 / EXTEND: fireTicks / IGNITE: igniteSeconds
+    private final int ticks; // EXTINGUISH: Not Used / EXTEND: fireTicks / IGNITE: igniteTicks
 
-    public FluidFireEffect(FireMode mode, float value) {
+    public FluidFireEffect(FireMode mode, int ticks) {
         super(1);
         this.mode = mode;
-        this.value = value;
+        this.ticks = ticks;
     }
 
     public static FluidFireEffect extinguish() {
@@ -24,8 +24,8 @@ public class FluidFireEffect extends FluidEffect {
         return new FluidFireEffect(FireMode.EXTEND, fireTicks);
     }
 
-    public static FluidFireEffect ignite(float igniteSeconds) {
-        return new FluidFireEffect(FireMode.IGNITE, igniteSeconds);
+    public static FluidFireEffect ignite(int igniteTicks) {
+        return new FluidFireEffect(FireMode.IGNITE, igniteTicks);
     }
 
     public FireMode getMode() {
@@ -41,9 +41,9 @@ public class FluidFireEffect extends FluidEffect {
             }
             case EXTEND -> {
                 if (entity.getRemainingFireTicks() > 0)
-                    entity.igniteForTicks((int) value);
+                    entity.setRemainingFireTicks(ticks);
             }
-            case IGNITE -> entity.igniteForSeconds(value);
+            case IGNITE -> entity.igniteForSeconds((float) ticks / 20f);
         }
     }
 
@@ -55,6 +55,7 @@ public class FluidFireEffect extends FluidEffect {
         modeName = Character.toUpperCase(modeName.charAt(0)) + modeName.substring(1);
 
         obj.addProperty("mode", modeName);
+        obj.addProperty("ticks", ticks);
         obj.addProperty("interval", interval);
         return obj;
     }
