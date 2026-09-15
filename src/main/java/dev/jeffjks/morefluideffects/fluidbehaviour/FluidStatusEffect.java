@@ -1,18 +1,19 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
+import com.google.gson.JsonObject;
 import dev.jeffjks.morefluideffects.utils.MobEffectsHelper;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
-public class FluidGenericEffect extends FluidEffect {
+public class FluidStatusEffect extends FluidEffect {
 
     private final String mobEffectId;
     private final int duration;
     private final int effectLevel;
 
-    public FluidGenericEffect(String mobEffectId, int interval, int duration, int effectLevel) {
+    public FluidStatusEffect(String mobEffectId, int interval, int duration, int effectLevel) {
         super(interval);
         this.mobEffectId = mobEffectId;
         this.duration = duration;
@@ -28,5 +29,15 @@ public class FluidGenericEffect extends FluidEffect {
                 living.addEffect(mobEffect);
             }
         }
+    }
+
+    @Override
+    public JsonObject toJson() {
+        JsonObject obj = new JsonObject();
+        obj.addProperty("mobEffectId", mobEffectId);
+        obj.addProperty("duration", duration);
+        obj.addProperty("effectLevel", effectLevel);
+        obj.addProperty("interval", interval);
+        return obj;
     }
 }

@@ -68,4 +68,12 @@ public final class FluidEffectsRegistry {
         }, false);
         return ref.get();
     }
+
+    public static boolean hasEffectOfType(Entity entity, Class<? extends FluidEffect> effectClass) {
+        FluidType type = getFirstMatchingFluidType(entity);
+        if (type == null)
+            return false;
+        var effects = FLUID_TYPES_MAP.get(type);
+        return effects != null && effects.stream().anyMatch(effectClass::isInstance);
+    }
 }

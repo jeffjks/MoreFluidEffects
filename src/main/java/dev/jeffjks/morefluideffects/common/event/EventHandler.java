@@ -2,6 +2,8 @@ package dev.jeffjks.morefluideffects.common.event;
 
 import dev.jeffjks.morefluideffects.common.registry.ModDamageTypes;
 import dev.jeffjks.morefluideffects.common.registry.ModEntityTypeTags;
+import dev.jeffjks.morefluideffects.fluidbehaviour.FluidDamageEffect;
+import dev.jeffjks.morefluideffects.fluidbehaviour.FluidEffectsRegistry;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -22,6 +24,14 @@ public class EventHandler {
                 if (isImmuneToCryogenic)
                     living.setTicksFrozen(0);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void onInvulnerabilityCheck(EntityInvulnerabilityCheckEvent event) {
+        if (event.getSource().is(DamageTypes.ON_FIRE)
+                && FluidEffectsRegistry.hasEffectOfType(event.getEntity(), FluidDamageEffect.class)) {
+            event.setInvulnerable(true);
         }
     }
 }

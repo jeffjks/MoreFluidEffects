@@ -1,5 +1,6 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
+import com.google.gson.JsonObject;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
@@ -19,5 +20,14 @@ public class FluidFreezeEffect extends FluidEffect {
         if (entity instanceof LivingEntity living) {
             living.setTicksFrozen(Math.min(living.getTicksFrozen() + frozenTicks + 2, maxFrozenTicks)); // -2 every tick in vanilla
         }
+    }
+
+    @Override
+    public JsonObject toJson() {
+        JsonObject obj = new JsonObject();
+        obj.addProperty("frozenTicks", frozenTicks);
+        obj.addProperty("maxFrozenTicks", maxFrozenTicks);
+        obj.addProperty("interval", interval);
+        return obj;
     }
 }

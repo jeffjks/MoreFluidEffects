@@ -1,5 +1,6 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
+import com.google.gson.JsonObject;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
@@ -17,5 +18,11 @@ public class FluidWaterLikeEffect extends FluidEffect {
                 living.hurt(living.damageSources().drown(), waterDamage);
             }
         }
+    }
+
+    @Override
+    public JsonObject toJson() {
+        JsonObject obj = new JsonObject();
+        return obj;
     }
 }

@@ -14,6 +14,7 @@ import net.minecraft.world.level.Level;
 
 public class ModDamageTypes {
     public static final ResourceKey<DamageType> ACID = create("acid");
+    public static final ResourceKey<DamageType> CRYOGENIC = create("cryogenic");
     public static final ResourceKey<DamageType> HEAT = create("heat");
 
     public static DamageSource of(Level level, ResourceKey<DamageType> key) {
@@ -35,11 +36,17 @@ public class ModDamageTypes {
             0.0f,
             DamageEffects.BURNING
         ));
+        context.register(CRYOGENIC, new DamageType(
+            "morefluideffects.cryogenic",
+            DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
+            0.0f,
+            DamageEffects.FREEZING
+        ));
         context.register(HEAT, new DamageType(
-                "morefluideffects.heat",
-                DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
-                0.0f,
-                DamageEffects.BURNING
+            "morefluideffects.heat",
+            DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER,
+            0.0f,
+            DamageEffects.BURNING
         ));
     }
 

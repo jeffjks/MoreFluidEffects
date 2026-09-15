@@ -1,5 +1,6 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
+import com.google.gson.JsonObject;
 import net.minecraft.world.entity.Entity;
 
 public abstract class FluidEffect implements IHasTickEffect {
@@ -19,4 +20,6 @@ public abstract class FluidEffect implements IHasTickEffect {
     }
 
     protected abstract void apply(Entity entity);
+
+    public abstract JsonObject toJson();
 }

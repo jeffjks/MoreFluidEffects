@@ -1,5 +1,6 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
+import com.google.gson.JsonObject;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
@@ -23,5 +24,13 @@ public class FluidExplosionOnFireEffect extends FluidEffect {
         level.explode(null, Explosion.getDefaultDamageSource(level, entity), null,
                 entity.getX(), entity.getY(0.0625F), entity.getZ(), explosionRadius, true, Level.ExplosionInteraction.TNT);
         entity.extinguishFire();
+    }
+
+    @Override
+    public JsonObject toJson() {
+        JsonObject obj = new JsonObject();
+        obj.addProperty("explosionRadius", explosionRadius);
+        obj.addProperty("interval", interval);
+        return obj;
     }
 }

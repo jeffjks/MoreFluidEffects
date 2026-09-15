@@ -2,6 +2,10 @@ package dev.jeffjks.morefluideffects;
 
 import com.google.gson.JsonObject;
 import dev.jeffjks.morefluideffects.fluidbehaviour.*;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.damagesource.DamageType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,26 +18,9 @@ public final class FluidEffectFactories {
     private static final Map<String, Function<JsonObject, FluidEffect>> REGISTRY = new HashMap<>();
 
     static {
-        registerFluidEffectType(FluidAcidEffect.class.getSimpleName(), json -> {
-            float damage = getFloat(json, "damage", 2.0f);
-            return new FluidAcidEffect(damage);
-        });
-
-        registerFluidEffectType(FluidCryogenicEffect.class.getSimpleName(), json -> {
-            float freezeDamage = getFloat(json, "freezeDamage", 2.0f);
-            int frozenTicks = getInt(json, "frozenTicks", 6);
-            int maxFrozenTicks = getInt(json, "maxFrozenTicks", 360);
-            return new FluidCryogenicEffect(freezeDamage, frozenTicks, maxFrozenTicks);
-        });
-
         registerFluidEffectType(FluidExplosionOnFireEffect.class.getSimpleName(), json -> {
             int explosionRadius = getInt(json, "explosionRadius", 3);
             return new FluidExplosionOnFireEffect(explosionRadius);
-        });
-
-        registerFluidEffectType(FluidExtendFireEffect.class.getSimpleName(), json -> {
-            int fireTicks = getInt(json, "fireTicks", 300);
-            return new FluidExtendFireEffect(fireTicks);
         });
 
         registerFluidEffectType(FluidFreezeEffect.class.getSimpleName(), json -> {
@@ -42,22 +29,19 @@ public final class FluidEffectFactories {
             return new FluidFreezeEffect(frozenTicks, maxFrozenTicks);
         });
 
-        registerFluidEffectType(FluidGenericEffect.class.getSimpleName(), json -> {
+        registerFluidEffectType(FluidStatusEffect.class.getSimpleName(), json -> {
             String mobEffectId = getString(json, "mobEffectId", "");
             int interval = getInt(json, "interval", 12);
             int duration = getInt(json, "duration", 60);
             int effectLevel = getInt(json, "effectLevel", 2);
-            return new FluidGenericEffect(mobEffectId, interval, duration, effectLevel);
+            return new FluidStatusEffect(mobEffectId, interval, duration, effectLevel);
         });
 
-        registerFluidEffectType(FluidHeatEffect.class.getSimpleName(), json -> {
+        registerFluidEffectType(FluidDamageEffect.class.getSimpleName(), json -> {
+            String damageTypeId = getString(json, "damageType", "minecraft:generic");
             float damage = getFloat(json, "damage", 2.0f);
-            return new FluidHeatEffect(damage);
-        });
-
-        registerFluidEffectType(FluidSuperHeatEffect.class.getSimpleName(), json -> {
-            float damage = getFloat(json, "damage", 4.0f);
-            return new FluidSuperHeatEffect(damage);
+            ResourceKey<DamageType> key = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.parse(damageTypeId));
+            return new FluidDamageEffect(key, damage);
         });
 
         registerFluidEffectType(FluidWaterLikeEffect.class.getSimpleName(), json -> {

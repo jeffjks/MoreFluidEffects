@@ -21,14 +21,17 @@ public class ModDamageTypeTagProvider extends DamageTypeTagsProvider {
     protected void addTags(Provider provider) {
         tag(DamageTypeTags.BYPASSES_SHIELD)
                 .add(ModDamageTypes.ACID)
+                .add(ModDamageTypes.CRYOGENIC)
                 .add(ModDamageTypes.HEAT);
 
         tag(DamageTypeTags.NO_KNOCKBACK)
                 .add(ModDamageTypes.ACID)
+                .add(ModDamageTypes.CRYOGENIC)
                 .add(ModDamageTypes.HEAT);
 
         tag(DamageTypeTags.PANIC_ENVIRONMENTAL_CAUSES)
                 .add(ModDamageTypes.ACID)
+                .add(ModDamageTypes.CRYOGENIC)
                 .add(ModDamageTypes.HEAT);
 
         tag(DamageTypeTags.IS_FIRE)

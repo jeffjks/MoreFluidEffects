@@ -20,23 +20,10 @@ public abstract class FluidTypeMixin implements FluidTypeExt {
     }
 
     @Unique
-    private boolean mfx$superHeated;
-
-    @Unique
     private boolean mfx$vaporizesInUltraWarm;
 
     @Unique
     private boolean mfx$locked;
-
-    @Override
-    public boolean mfx$isSuperHeated() { return mfx$superHeated; }
-
-    @Override
-    public void mfx$setSuperHeated(boolean value) {
-        if (mfx$locked)
-            throw new IllegalStateException("superHeated already locked");
-        mfx$superHeated = value;
-    }
 
     @Override
     public boolean mfx$isVaporizesInUltraWarm() { return mfx$vaporizesInUltraWarm; }
@@ -55,7 +42,6 @@ public abstract class FluidTypeMixin implements FluidTypeExt {
     public void mfx$resetFluidFlags() {
         mfx$locked = false;
         mfx$vaporizesInUltraWarm = false;
-        mfx$superHeated = false;
     }
 
 
