@@ -1,6 +1,7 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
 import com.google.gson.JsonObject;
+import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import dev.jeffjks.morefluideffects.utils.MobEffectsHelper;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -8,13 +9,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
 public class FluidStatusEffect extends FluidEffect {
+    public static final String TYPE = MoreFluidEffects.MOD_ID + ":status_effect";
 
     private final String mobEffectId;
     private final int duration;
     private final int effectLevel;
 
     public FluidStatusEffect(String mobEffectId, int duration, int effectLevel, int interval) {
-        super(interval);
+        super(TYPE, interval);
         this.mobEffectId = mobEffectId;
         this.duration = duration;
         this.effectLevel = effectLevel;

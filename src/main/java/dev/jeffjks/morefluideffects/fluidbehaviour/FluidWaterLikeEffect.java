@@ -1,13 +1,15 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
 import com.google.gson.JsonObject;
+import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
 public class FluidWaterLikeEffect extends FluidEffect {
+    public static final String TYPE = MoreFluidEffects.MOD_ID + ":water_like";
 
     public FluidWaterLikeEffect() {
-        super(1);
+        super(TYPE, 1);
     }
 
     @Override

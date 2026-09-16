@@ -1,9 +1,11 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
 import com.google.gson.JsonObject;
+import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import net.minecraft.world.entity.Entity;
 
 public class FluidFireEffect extends FluidEffect {
+    public static final String TYPE = MoreFluidEffects.MOD_ID + ":fire";
 
     public enum FireMode { EXTINGUISH, EXTEND, IGNITE }
 
@@ -11,7 +13,7 @@ public class FluidFireEffect extends FluidEffect {
     private final int ticks; // EXTINGUISH: Not Used / EXTEND: fireTicks / IGNITE: igniteTicks
 
     public FluidFireEffect(FireMode mode, int ticks) {
-        super(1);
+        super(TYPE, 1);
         this.mode = mode;
         this.ticks = ticks;
     }

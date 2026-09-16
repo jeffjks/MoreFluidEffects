@@ -8,8 +8,8 @@ public abstract class FluidEffect implements IHasTickEffect {
     public transient String type;
     protected final int interval;
 
-    protected FluidEffect(int interval) {
-        this.type = getClass().getSimpleName();
+    protected FluidEffect(String type, int interval) {
+        this.type = type;
         this.interval = Math.max(1, interval);
     }
 

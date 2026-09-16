@@ -1,16 +1,18 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
 import com.google.gson.JsonObject;
+import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
 public class FluidFreezeEffect extends FluidEffect {
+    public static final String TYPE = MoreFluidEffects.MOD_ID + ":freezing";
 
     private final int frozenTicks;
     private final int maxFrozenTicks;
 
     public FluidFreezeEffect(int frozenTicks, int maxFrozenTicks) {
-        super(1);
+        super(TYPE, 1);
         this.frozenTicks = frozenTicks;
         this.maxFrozenTicks = maxFrozenTicks;
     }

@@ -12,8 +12,6 @@ import net.neoforged.neoforge.fluids.FluidType;
 import java.util.List;
 
 public final class DefaultFluidGroups {
-    private static final FluidEffect WATER_LIKE_EFFECT = new FluidWaterLikeEffect();
-
     private DefaultFluidGroups() {}
 
     public static FluidEffectJsonData registerDefaultFluidEffects() {
@@ -69,19 +67,19 @@ public final class DefaultFluidGroups {
                 FluidFireEffect.ignite(300)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:brine", true, true, List.of(
-                WATER_LIKE_EFFECT
+                new FluidWaterLikeEffect()
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:lithium", false, false, List.of(
                 new FluidDamageEffect(ModDamageTypes.HEAT, 2f, false)
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:steam", true, true, List.of(
-                WATER_LIKE_EFFECT
+                new FluidWaterLikeEffect()
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:heavy_water", true, true, List.of(
-                WATER_LIKE_EFFECT
+                new FluidWaterLikeEffect()
         )));
         cfg.addFluidMapping(getFluidMapping("mekanism:nutritional_paste", true, true, List.of(
-                WATER_LIKE_EFFECT
+                new FluidWaterLikeEffect()
         )));
         cfg.addFluidMapping(getFluidMapping("mekanismgenerators:bioethanol", false, true, List.of(
                 FluidFireEffect.extend(300)
@@ -111,13 +109,13 @@ public final class DefaultFluidGroups {
 
         // Ender IO
         cfg.addFluidMapping(getFluidMapping("enderio:fluid_nutrient_distillation_still", true, true, List.of(
-                WATER_LIKE_EFFECT
+                new FluidWaterLikeEffect()
         )));
         cfg.addFluidMapping(getFluidMapping("enderio:fluid_dew_of_the_void_still", true, false, List.of(
-                WATER_LIKE_EFFECT
+                new FluidWaterLikeEffect()
         )));
         cfg.addFluidMapping(getFluidMapping("enderio:fluid_hootch_still", true, true, List.of(
-                WATER_LIKE_EFFECT,
+                new FluidWaterLikeEffect(),
                 FluidFireEffect.extend(300)
         )));
         cfg.addFluidMapping(getFluidMapping("enderio:fluid_rocket_fuel_still", false, true, List.of(
@@ -129,15 +127,15 @@ public final class DefaultFluidGroups {
         )));
         cfg.addFluidMapping(getFluidMapping("enderio:fluid_xp_juice_still", false, false));
         cfg.addFluidMapping(getFluidMapping("enderio:fluid_liquid_sunshine_still", true, true, List.of(
-                WATER_LIKE_EFFECT
+                new FluidWaterLikeEffect()
         )));
         cfg.addFluidMapping(getFluidMapping("enderio:fluid_liquid_darkness_still", true, false));
         cfg.addFluidMapping(getFluidMapping("enderio:fluid_cloud_seed_still", true, true, List.of(
-                WATER_LIKE_EFFECT,
+                new FluidWaterLikeEffect(),
                 new FluidFreezeEffect(1, 140)
         )));
         cfg.addFluidMapping(getFluidMapping("enderio:fluid_cloud_seed_concentrated_still", true, true, List.of(
-                WATER_LIKE_EFFECT,
+                new FluidWaterLikeEffect(),
                 new FluidFreezeEffect(3, 240)
         )));
 

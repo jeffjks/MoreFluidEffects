@@ -1,16 +1,18 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
 import com.google.gson.JsonObject;
+import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 
 public class FluidExplosionOnFireEffect extends FluidEffect {
+    public static final String TYPE = MoreFluidEffects.MOD_ID + ":explosion_on_fire";
 
     private final float explosionRadius;
 
     public FluidExplosionOnFireEffect(float explosionRadius) {
-        super(1);
+        super(TYPE, 1);
         this.explosionRadius = explosionRadius;
     }
 
