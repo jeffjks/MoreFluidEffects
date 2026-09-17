@@ -1,13 +1,33 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
 import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.jeffjks.morefluideffects.MoreFluidEffects;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.Entity;
+
+import java.util.Locale;
 
 public class FluidFireEffect extends FluidEffect {
     public static final String TYPE = MoreFluidEffects.MOD_ID + ":fire";
 
-    public enum FireMode { EXTINGUISH, EXTEND, IGNITE }
+    public static final MapCodec<FluidFireEffect> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+            StringRepresentable.fromEnum(FireMode::values).fieldOf("mode").forGetter(e -> e.mode),
+            Codec.INT.fieldOf("ticks").forGetter(e -> e.ticks)
+    ).apply(instance, FluidFireEffect::new));
+
+    public enum FireMode implements StringRepresentable {
+        EXTINGUISH,
+        EXTEND,
+        IGNITE;
+
+        @Override
+        public String getSerializedName() {
+            return name().toLowerCase(Locale.ROOT);
+        }
+    }
 
     private final FireMode mode;
     private final int ticks; // EXTINGUISH: Not Used / EXTEND: fireTicks / IGNITE: igniteTicks

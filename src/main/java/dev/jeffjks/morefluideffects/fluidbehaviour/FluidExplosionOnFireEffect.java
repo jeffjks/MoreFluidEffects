@@ -1,6 +1,9 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
 import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Explosion;
@@ -8,6 +11,10 @@ import net.minecraft.world.level.Level;
 
 public class FluidExplosionOnFireEffect extends FluidEffect {
     public static final String TYPE = MoreFluidEffects.MOD_ID + ":explosion_on_fire";
+
+    public static final MapCodec<FluidExplosionOnFireEffect> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+            Codec.FLOAT.fieldOf("explosionRadius").forGetter(e -> e.explosionRadius)
+    ).apply(instance, FluidExplosionOnFireEffect::new));
 
     private final float explosionRadius;
 

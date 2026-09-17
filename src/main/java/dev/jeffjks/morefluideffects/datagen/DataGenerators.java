@@ -2,6 +2,7 @@ package dev.jeffjks.morefluideffects.datagen;
 
 import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import dev.jeffjks.morefluideffects.common.registry.ModDamageTypes;
+import dev.jeffjks.morefluideffects.fluidbehaviour.ModFluidEffectDataMapProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -34,12 +35,18 @@ public class DataGenerators {
         var builtin = new DatapackBuiltinEntriesProvider(
                 packOutput, lookupProvider, builder, Set.of(MoreFluidEffects.MOD_ID)
         );
+
+        // Server Side
         generator.addProvider(event.includeServer(), builtin);
 
         generator.addProvider(event.includeServer(), new ModDamageTypeTagProvider(packOutput, builtin.getRegistryProvider(), existingFileHelper));
         generator.addProvider(event.includeServer(), new ModEntityTypeTagProvider(packOutput, builtin.getRegistryProvider(), existingFileHelper));
 
         generator.addProvider(event.includeServer(), new ModLanguageProvider(packOutput));
+
+        generator.addProvider(event.includeServer(), new ModFluidEffectDataMapProvider(packOutput, lookupProvider));
+
+        // Client Side
         generator.addProvider(event.includeClient(), new ModLanguageProvider(packOutput, "ko_kr"));
     }
 }

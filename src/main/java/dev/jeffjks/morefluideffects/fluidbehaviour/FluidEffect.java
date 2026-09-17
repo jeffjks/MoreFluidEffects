@@ -22,4 +22,6 @@ public abstract class FluidEffect implements IHasTickEffect {
     protected abstract void apply(Entity entity);
 
     public abstract JsonObject toJson();
+
+    public String getType() { return type; }
 }

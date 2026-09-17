@@ -1,8 +1,12 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
 import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import dev.jeffjks.morefluideffects.common.registry.ModDamageTypes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageType;
@@ -11,6 +15,12 @@ import net.minecraft.world.entity.LivingEntity;
 
 public class FluidDamageEffect extends FluidEffect {
     public static final String TYPE = MoreFluidEffects.MOD_ID + ":fluid_damage";
+
+    public static final MapCodec<FluidDamageEffect> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+            ResourceKey.codec(Registries.DAMAGE_TYPE).fieldOf("damageType").forGetter(e -> e.damageType),
+            Codec.FLOAT.fieldOf("damage").forGetter(e -> e.damage),
+            Codec.BOOL.optionalFieldOf("damagesItems", true).forGetter(e -> e.damagesItems)
+    ).apply(instance, FluidDamageEffect::new));
 
     private final ResourceKey<DamageType> damageType;
     private final float damage;
