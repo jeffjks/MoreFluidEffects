@@ -5,7 +5,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.jeffjks.morefluideffects.MoreFluidEffects;
-import dev.jeffjks.morefluideffects.utils.MobEffectsHelper;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -13,7 +12,6 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.Level;
 
 public class FluidStatusEffect extends FluidEffect {
     public static final String TYPE = MoreFluidEffects.MOD_ID + ":status_effect";
@@ -46,15 +44,5 @@ public class FluidStatusEffect extends FluidEffect {
                 .getHolderOrThrow(mobEffectId);
 
         living.addEffect(new MobEffectInstance(holder, duration, effectLevel - 1));
-    }
-
-    @Override
-    public JsonObject toJson() {
-        JsonObject obj = new JsonObject();
-        obj.addProperty("mobEffectId", mobEffectId.location().toString());
-        obj.addProperty("duration", duration);
-        obj.addProperty("effectLevel", effectLevel);
-        obj.addProperty("interval", interval);
-        return obj;
     }
 }

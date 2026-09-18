@@ -24,10 +24,4 @@ public class FluidWaterLikeEffect extends FluidEffect {
             }
         }
     }
-
-    @Override
-    public JsonObject toJson() {
-        JsonObject obj = new JsonObject();
-        return obj;
-    }
 }

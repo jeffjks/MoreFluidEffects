@@ -34,11 +34,4 @@ public class FluidExplosionOnFireEffect extends FluidEffect {
                 entity.getX(), entity.getY(0.0625F), entity.getZ(), explosionRadius, true, Level.ExplosionInteraction.TNT);
         entity.extinguishFire();
     }
-
-    @Override
-    public JsonObject toJson() {
-        JsonObject obj = new JsonObject();
-        obj.addProperty("explosionRadius", explosionRadius);
-        return obj;
-    }
 }

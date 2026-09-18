@@ -49,13 +49,4 @@ public class FluidDamageEffect extends FluidEffect {
             entity.playSound(SoundEvents.GENERIC_BURN, 0.4F, 2.0F + entity.getRandom().nextFloat() * 0.4F);
         }
     }
-
-    @Override
-    public JsonObject toJson() {
-        JsonObject obj = new JsonObject();
-        obj.addProperty("damageType", damageType.location().toString());
-        obj.addProperty("damage", damage);
-        obj.addProperty("damagesItems", damagesItems);
-        return obj;
-    }
 }

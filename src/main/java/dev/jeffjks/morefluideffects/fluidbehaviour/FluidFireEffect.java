@@ -19,7 +19,6 @@ public class FluidFireEffect extends FluidEffect {
     ).apply(instance, FluidFireEffect::new));
 
     public enum FireMode implements StringRepresentable {
-        EXTINGUISH,
         EXTEND,
         IGNITE;
 
@@ -38,10 +37,6 @@ public class FluidFireEffect extends FluidEffect {
         this.ticks = ticks;
     }
 
-    public static FluidFireEffect extinguish() {
-        return new FluidFireEffect(FireMode.EXTINGUISH, 0);
-    }
-
     public static FluidFireEffect extend(int fireTicks) {
         return new FluidFireEffect(FireMode.EXTEND, fireTicks);
     }
@@ -57,25 +52,11 @@ public class FluidFireEffect extends FluidEffect {
     @Override
     protected void apply(Entity entity) {
         switch (mode) {
-            case EXTINGUISH -> {
-                if (entity.isOnFire())
-                    entity.clearFire();
-            }
             case EXTEND -> {
                 if (entity.getRemainingFireTicks() > 0)
                     entity.setRemainingFireTicks(ticks);
             }
             case IGNITE -> entity.igniteForSeconds((float) ticks / 20f);
         }
-    }
-
-    @Override
-    public JsonObject toJson() {
-        JsonObject obj = new JsonObject();
-
-        String modeName = mode.name().toLowerCase();
-        obj.addProperty("mode", modeName);
-        obj.addProperty("ticks", ticks);
-        return obj;
     }
 }
