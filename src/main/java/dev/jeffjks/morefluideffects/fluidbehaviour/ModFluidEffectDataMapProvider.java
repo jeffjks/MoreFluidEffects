@@ -37,12 +37,12 @@ public class ModFluidEffectDataMapProvider extends DataMapProvider {
         )), false);
 
         builder.add(fluidKey("mekanism:chlorine"), new FluidEffectData(true, true, List.of(
-                new FluidStatusEffect(mobEffectKey("minecraft:poison"), 12, 60, 1),
+                new FluidStatusEffect(mobEffectKey("minecraft:poison"), 60, 1, 12),
                 new FluidFreezeEffect(3, 240)
         )), false);
 
         builder.add(fluidKey("mekanism:sulfur_dioxide"), new FluidEffectData(true, true, List.of(
-                new FluidStatusEffect(mobEffectKey("minecraft:poison"), 25, 60, 1)
+                new FluidStatusEffect(mobEffectKey("minecraft:poison"), 60, 1, 25)
         )), false);
 
         builder.add(fluidKey("mekanism:sulfur_trioxide"), new FluidEffectData(true, true, List.of(
@@ -59,8 +59,8 @@ public class ModFluidEffectDataMapProvider extends DataMapProvider {
 
         builder.add(fluidKey("mekanism:hydrofluoric_acid"), new FluidEffectData(true, true, List.of(
                 new FluidDamageEffect(ModDamageTypes.ACID, 2f, false),
-                new FluidStatusEffect(mobEffectKey("minecraft:poison"), 12, 1200, 3),
-                new FluidStatusEffect(mobEffectKey("minecraft:weakness"), 12, 1200, 2)
+                new FluidStatusEffect(mobEffectKey("minecraft:poison"), 1200, 3, 12),
+                new FluidStatusEffect(mobEffectKey("minecraft:weakness"), 1200, 2, 12)
         )), false);
 
         builder.add(fluidKey("mekanism:uranium_oxide"), new FluidEffectData(false, false, List.of(

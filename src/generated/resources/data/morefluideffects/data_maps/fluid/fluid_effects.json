@@ -133,17 +133,6 @@
       "canExtinguish": false,
       "vaporizesInUltraWarm": false
     },
-    "mekanism:bioethanol": {
-      "canExtinguish": false,
-      "effects": [
-        {
-          "type": "morefluideffects:fire",
-          "mode": "extend",
-          "ticks": 300
-        }
-      ],
-      "vaporizesInUltraWarm": true
-    },
     "mekanism:brine": {
       "canExtinguish": true,
       "effects": [
@@ -158,32 +147,15 @@
       "effects": [
         {
           "type": "morefluideffects:status_effect",
-          "duration": 12,
-          "effectLevel": 60,
-          "interval": 1,
+          "duration": 60,
+          "effectLevel": 1,
+          "interval": 12,
           "mobEffectId": "minecraft:poison"
         },
         {
           "type": "morefluideffects:freezing",
           "frozenTicks": 3,
           "maxFrozenTicks": 240
-        }
-      ],
-      "vaporizesInUltraWarm": true
-    },
-    "mekanism:deuterium": {
-      "canExtinguish": true,
-      "effects": [
-        {
-          "type": "morefluideffects:fluid_damage",
-          "damage": 2.0,
-          "damageType": "morefluideffects:cryogenic",
-          "damagesItems": false
-        },
-        {
-          "type": "morefluideffects:freezing",
-          "frozenTicks": 6,
-          "maxFrozenTicks": 360
         }
       ],
       "vaporizesInUltraWarm": true
@@ -199,23 +171,6 @@
         {
           "type": "morefluideffects:explosion_on_fire",
           "explosionRadius": 4.0
-        }
-      ],
-      "vaporizesInUltraWarm": true
-    },
-    "mekanism:fusion_fuel": {
-      "canExtinguish": true,
-      "effects": [
-        {
-          "type": "morefluideffects:fluid_damage",
-          "damage": 2.0,
-          "damageType": "morefluideffects:cryogenic",
-          "damagesItems": false
-        },
-        {
-          "type": "morefluideffects:freezing",
-          "frozenTicks": 6,
-          "maxFrozenTicks": 360
         }
       ],
       "vaporizesInUltraWarm": true
@@ -240,16 +195,16 @@
         },
         {
           "type": "morefluideffects:status_effect",
-          "duration": 12,
-          "effectLevel": 1200,
-          "interval": 3,
+          "duration": 1200,
+          "effectLevel": 3,
+          "interval": 12,
           "mobEffectId": "minecraft:poison"
         },
         {
           "type": "morefluideffects:status_effect",
-          "duration": 12,
-          "effectLevel": 1200,
-          "interval": 2,
+          "duration": 1200,
+          "effectLevel": 2,
+          "interval": 12,
           "mobEffectId": "minecraft:weakness"
         }
       ],
@@ -348,9 +303,9 @@
       "effects": [
         {
           "type": "morefluideffects:status_effect",
-          "duration": 25,
-          "effectLevel": 60,
-          "interval": 1,
+          "duration": 60,
+          "effectLevel": 1,
+          "interval": 25,
           "mobEffectId": "minecraft:poison"
         }
       ],
@@ -396,23 +351,6 @@
       ],
       "vaporizesInUltraWarm": false
     },
-    "mekanism:tritium": {
-      "canExtinguish": true,
-      "effects": [
-        {
-          "type": "morefluideffects:fluid_damage",
-          "damage": 2.0,
-          "damageType": "morefluideffects:cryogenic",
-          "damagesItems": false
-        },
-        {
-          "type": "morefluideffects:freezing",
-          "frozenTicks": 6,
-          "maxFrozenTicks": 360
-        }
-      ],
-      "vaporizesInUltraWarm": true
-    },
     "mekanism:uranium_hexafluoride": {
       "canExtinguish": true,
       "effects": [
@@ -440,6 +378,68 @@
         }
       ],
       "vaporizesInUltraWarm": false
+    },
+    "mekanismgenerators:bioethanol": {
+      "canExtinguish": false,
+      "effects": [
+        {
+          "type": "morefluideffects:fire",
+          "mode": "extend",
+          "ticks": 300
+        }
+      ],
+      "vaporizesInUltraWarm": true
+    },
+    "mekanismgenerators:deuterium": {
+      "canExtinguish": true,
+      "effects": [
+        {
+          "type": "morefluideffects:fluid_damage",
+          "damage": 2.0,
+          "damageType": "morefluideffects:cryogenic",
+          "damagesItems": false
+        },
+        {
+          "type": "morefluideffects:freezing",
+          "frozenTicks": 6,
+          "maxFrozenTicks": 360
+        }
+      ],
+      "vaporizesInUltraWarm": true
+    },
+    "mekanismgenerators:fusion_fuel": {
+      "canExtinguish": true,
+      "effects": [
+        {
+          "type": "morefluideffects:fluid_damage",
+          "damage": 2.0,
+          "damageType": "morefluideffects:cryogenic",
+          "damagesItems": false
+        },
+        {
+          "type": "morefluideffects:freezing",
+          "frozenTicks": 6,
+          "maxFrozenTicks": 360
+        }
+      ],
+      "vaporizesInUltraWarm": true
+    },
+    "mekanismgenerators:tritium": {
+      "canExtinguish": true,
+      "effects": [
+        {
+          "type": "morefluideffects:fluid_damage",
+          "damage": 2.0,
+          "damageType": "morefluideffects:cryogenic",
+          "damagesItems": false
+        },
+        {
+          "type": "morefluideffects:freezing",
+          "frozenTicks": 6,
+          "maxFrozenTicks": 360
+        }
+      ],
+      "vaporizesInUltraWarm": true
     }
   }
 }
