@@ -50,7 +50,7 @@ public class FluidDamageEffect extends FluidEffect {
                 && entity.getType().is(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES)) {
             finalDamage *= 5F;
         }
-        
+
         boolean hurt = entity.hurt(ModDamageTypes.of(entity.level(), damageType), finalDamage);
         if (hurt) {
             entity.playSound(SoundEvents.GENERIC_BURN, 0.4F, 2.0F + entity.getRandom().nextFloat() * 0.4F);
