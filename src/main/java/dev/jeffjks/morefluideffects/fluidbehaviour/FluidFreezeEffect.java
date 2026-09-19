@@ -1,6 +1,5 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
-import com.google.gson.JsonObject;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

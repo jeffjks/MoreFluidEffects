@@ -1,18 +1,12 @@
 package dev.jeffjks.morefluideffects;
 
-import com.google.gson.JsonObject;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
 import dev.jeffjks.morefluideffects.fluidbehaviour.*;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.damagesource.DamageType;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 public final class FluidEffectFactories {
 

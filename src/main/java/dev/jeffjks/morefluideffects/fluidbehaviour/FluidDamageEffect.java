@@ -1,6 +1,5 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
-import com.google.gson.JsonObject;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -9,6 +8,7 @@ import dev.jeffjks.morefluideffects.common.registry.ModDamageTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -44,7 +44,14 @@ public class FluidDamageEffect extends FluidEffect {
     protected void apply(Entity entity) {
         if (!damagesItems && !(entity instanceof LivingEntity))
             return;
-        boolean hurt = entity.hurt(ModDamageTypes.of(entity.level(), damageType), damage);
+
+        float finalDamage = damage;
+        if (damageType == ModDamageTypes.CRYOGENIC
+                && entity.getType().is(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES)) {
+            finalDamage *= 5F;
+        }
+        
+        boolean hurt = entity.hurt(ModDamageTypes.of(entity.level(), damageType), finalDamage);
         if (hurt) {
             entity.playSound(SoundEvents.GENERIC_BURN, 0.4F, 2.0F + entity.getRandom().nextFloat() * 0.4F);
         }

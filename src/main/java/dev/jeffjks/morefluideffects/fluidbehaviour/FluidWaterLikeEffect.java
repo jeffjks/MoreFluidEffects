@@ -1,6 +1,5 @@
 package dev.jeffjks.morefluideffects.fluidbehaviour;
 
-import com.google.gson.JsonObject;
 import com.mojang.serialization.MapCodec;
 import dev.jeffjks.morefluideffects.MoreFluidEffects;
 import net.minecraft.world.entity.Entity;
